@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KISI-KISI CC PORSADIN 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enable dark mode via class toggle on html tag
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        /* Hide elements utility */
+        .hidden-view { display: none !important; }
+    </style>
+</head>
+<body class="bg-emerald-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300 font-sans min-h-screen flex flex-col">
+
+    <!-- ================== LOGIN VIEW ================== -->
+    <div id="login-view" class="flex-1 flex items-center justify-center p-4">
+        <div class="w-full max-w-md p-8 rounded-xl shadow-2xl transition-colors duration-300 border-t-4 bg-white dark:bg-gray-800 border-emerald-500 dark:border-yellow-500">
+            <div class="flex flex-col items-center mb-8">
+                <img src="https://res.cloudinary.com/dehhn4hfk/image/upload/v1780462236/20260603_114752_xwetke.png" alt="Logo Madrasah" class="h-28 w-28 object-contain rounded-full p-2 bg-white shadow-md border-2 border-yellow-400 mb-4" loading="lazy" />
+                <h1 class="text-2xl font-extrabold text-center text-emerald-700 dark:text-yellow-400">
+                    KISI-KISI CC PORSADIN 2026
+                </h1>
+                <h2 class="text-sm font-semibold text-center mt-1 text-gray-600 dark:text-gray-300">
+                    MADRASAH DINIYYAH MIFTAHUL HUDA AL-FALAH
+                </h2>
+            </div>
+
+            <form id="login-form" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-200">Username Peserta</label>
+                    <input type="text" id="input-username" class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-400" placeholder="Masukkan Username" required />
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-200">Password</label>
+                    <input type="password" id="input-password" class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-400" placeholder="Masukkan Password" required />
+                </div>
+
+                <div class="pt-2 border-t border-gray-200 dark:border-gray-700">
+                    <label class="block text-xs font-bold mb-3 mt-2 text-emerald-600 dark:text-yellow-400">
+                        Pilih Rentang Soal (Opsional):
+                    </label>
+                    <div class="flex gap-4">
+                        <div class="flex-1">
+                            <input type="number" id="input-start" class="w-full px-3 py-2 text-sm rounded-lg border focus:ring-2 focus:ring-emerald-500 focus:outline-none bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-400" placeholder="Mulai dari No." min="1" />
+                        </div>
+                        <div class="flex-1">
+                            <input type="number" id="input-end" class="w-full px-3 py-2 text-sm rounded-lg border focus:ring-2 focus:ring-emerald-500 focus:outline-none bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-400" placeholder="Sampai No." min="1" />
+                        </div>
+                    </div>
+                    <p class="text-[10px] mt-2 italic text-gray-500 dark:text-gray-400">*Kosongkan untuk mengerjakan semua soal.</p>
+                </div>
+
+                <p id="login-error" class="hidden-view text-red-500 text-sm font-semibold text-center bg-red-100 dark:bg-red-900/50 p-2 rounded"></p>
+
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-lg transition-colors duration-200 shadow-md flex justify-center items-center gap-2">
+                    MASUK UJIAN
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" /></svg>
+                </button>
+            </form>
+
+            <button onclick="toggleDarkMode()" class="mt-6 mx-auto flex items-center justify-center w-10 h-10 rounded-full transition-colors bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-yellow-400 hover:bg-gray-300 dark:hover:bg-gray-600" title="Ganti Tema">
+                <svg id="icon-sun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                <svg id="icon-moon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- ================== QUIZ VIEW ================== -->
+    <div id="quiz-view" class="hidden-view flex-1 flex flex-col w-full h-screen overflow-hidden">
+        
+        <!-- Header -->
+        <header class="shadow-lg z-20 flex-shrink-0 transition-colors duration-300 border-b-4 bg-emerald-600 dark:bg-emerald-900 border-yellow-400 dark:border-yellow-500">
+            <div class="px-4 md:px-6 py-3 flex justify-between items-center border-b border-emerald-500 dark:border-emerald-800">
+                <div class="flex items-center gap-4">
+                    <img src="https://res.cloudinary.com/dehhn4hfk/image/upload/v1780462236/20260603_114752_xwetke.png" alt="Logo Madrasah" class="h-14 w-14 md:h-16 md:w-16 object-contain bg-white rounded-full p-1.5 shadow-md" loading="lazy" />
+                    <div class="flex flex-col">
+                        <h1 class="text-lg md:text-2xl font-extrabold tracking-wide text-yellow-300 leading-tight drop-shadow-sm">MADRASAH DINIYYAH MIFTAHUL HUDA AL-FALAH</h1>
+                        <span class="text-xs md:text-sm font-bold tracking-wider text-white dark:text-emerald-100">BABAAN NGASEM NGAJUM MALANG</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-3 md:gap-5">
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-full transition-colors bg-emerald-500 dark:bg-emerald-800 text-white dark:text-yellow-400 hover:bg-emerald-400 dark:hover:bg-emerald-700" title="Ganti Tema">
+                        <svg class="w-5 h-5 md:w-6 md:h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                        <svg class="w-5 h-5 md:w-6 md:h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                    </button>
+                    
+                    <div class="text-right hidden sm:block">
+                        <div class="text-sm font-bold text-yellow-200 dark:text-yellow-300">Peserta Ujian</div>
+                        <div id="display-username" class="text-xs font-semibold text-emerald-100 dark:text-emerald-200">User</div>
+                    </div>
+                    <button onclick="openProfileModal()" title="Menu Peserta" class="h-12 w-12 md:h-14 md:w-14 bg-white rounded-full border-2 border-yellow-300 flex items-center justify-center overflow-hidden shadow-sm hover:ring-2 hover:ring-white transition-all transform hover:scale-105 active:scale-95 cursor-pointer">
+                        <img src="https://res.cloudinary.com/dehhn4hfk/image/upload/v1780462236/20260603_114752_xwetke.png" alt="Profile" class="w-full h-full object-contain p-1" loading="lazy" />
+                    </button>
+                </div>
+            </div>
+            <div class="px-4 md:px-6 py-2.5 flex justify-between items-center bg-emerald-700 dark:bg-emerald-800">
+                <span class="font-extrabold text-yellow-300 tracking-wider text-sm md:text-base drop-shadow-sm">KISI-KISI SOAL CERDAS CERMAT PORSADIN 2027</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col md:flex-row overflow-hidden max-w-[1800px] w-full mx-auto relative">
+            
+            <!-- Left Panel: Question -->
+            <div class="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto transition-colors duration-300 bg-emerald-50 dark:bg-gray-900">
+                <div class="rounded-t-xl shadow-md border flex-1 flex flex-col relative transition-colors duration-300 bg-white dark:bg-gray-800 border-emerald-200 dark:border-gray-700">
+                    <div class="px-6 py-4 border-b flex justify-between items-center rounded-t-xl transition-colors duration-300 bg-emerald-50 dark:bg-gray-800 border-emerald-100 dark:border-gray-700">
+                        <h2 class="text-lg md:text-xl font-bold text-gray-600 dark:text-gray-300">
+                            SOAL NO. <span id="q-index-display" class="text-3xl font-black ml-2 text-emerald-600 dark:text-yellow-400">1</span>
+                        </h2>
+                    </div>
+
+                    <div class="p-6 md:p-10 flex-1 overflow-y-auto">
+                        <p id="q-text" class="text-xl md:text-2xl font-medium mb-10 leading-relaxed text-gray-800 dark:text-gray-100"></p>
+                        <div id="q-options" class="space-y-5">
+                            <!-- Options injected by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Navigation -->
+                <div class="p-4 md:p-6 rounded-b-xl shadow-md border-x border-b flex justify-between items-center transition-colors duration-300 bg-white dark:bg-gray-800 border-emerald-200 dark:border-gray-700">
+                    <button id="btn-prev" onclick="handlePrev()" class="px-5 py-3 md:px-8 md:py-3.5 rounded-lg shadow-sm flex items-center font-bold text-sm md:text-base transition-all transform active:scale-95 bg-gray-600 text-white hover:bg-gray-700 dark:bg-gray-600 dark:hover:bg-gray-500 disabled:bg-gray-200 disabled:text-gray-400 dark:disabled:bg-gray-700 dark:disabled:text-gray-500 disabled:cursor-not-allowed">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" /></svg>
+                        <span class="hidden sm:inline">SEBELUMNYA</span>
+                        <span class="sm:hidden">PREV</span>
+                    </button>
+
+                    <label class="flex items-center gap-3 cursor-pointer px-6 py-3 md:px-8 md:py-3.5 rounded-lg shadow-sm font-bold text-sm md:text-base transition-all transform active:scale-95 bg-yellow-400 dark:bg-yellow-500 text-black dark:text-gray-900 hover:bg-yellow-300 dark:hover:bg-yellow-400">
+                        <input type="checkbox" id="check-doubtful" onchange="toggleDoubtful()" class="w-5 h-5 md:w-6 md:h-6 accent-black cursor-pointer" />
+                        RAGU-RAGU
+                    </label>
+
+                    <button id="btn-next" onclick="handleNext()" class="px-5 py-3 md:px-8 md:py-3.5 rounded-lg shadow-md flex items-center font-bold text-sm md:text-base transition-all transform active:scale-95 bg-emerald-600 text-white hover:bg-emerald-500">
+                        <span id="btn-next-text-desktop" class="hidden sm:inline">SELANJUTNYA</span>
+                        <span id="btn-next-text-mobile" class="sm:hidden">NEXT</span>
+                        <svg id="btn-next-icon" class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" /></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Panel: Grid -->
+            <div class="w-full md:w-80 lg:w-96 flex flex-col z-10 shadow-2xl transition-colors duration-300 border-l bg-white dark:bg-gray-800 border-emerald-200 dark:border-gray-700">
+                <div class="px-4 py-4 font-black text-center tracking-widest border-b bg-emerald-50 dark:bg-gray-900 text-emerald-800 dark:text-gray-300 border-emerald-200 dark:border-gray-700">
+                    DAFTAR SOAL
+                </div>
+                <div class="p-4 md:p-6 flex-1 overflow-y-auto">
+                    <div id="question-grid" class="grid grid-cols-5 gap-2 md:gap-3">
+                        <!-- Grid buttons injected by JS -->
+                    </div>
+                </div>
+                
+                <!-- Legend -->
+                <div class="p-4 md:p-6 border-t text-xs md:text-sm font-bold space-y-3 transition-colors duration-300 bg-emerald-50 dark:bg-gray-900 border-emerald-200 dark:border-gray-700 text-gray-600 dark:text-gray-300">
+                    <div class="flex items-center gap-3">
+                        <div class="w-5 h-5 rounded border bg-emerald-500 dark:bg-emerald-600 border-emerald-600 dark:border-emerald-700"></div>
+                        <span>Sudah Dijawab</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-5 h-5 rounded border bg-yellow-400 dark:bg-yellow-500 border-yellow-500 dark:border-yellow-600"></div>
+                        <span>Ragu-ragu</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-5 h-5 rounded border bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600"></div>
+                        <span>Belum Dijawab</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ================== RESULT VIEW ================== -->
+    <div id="result-view" class="hidden-view min-h-screen p-4 md:p-8 font-sans transition-colors duration-300 bg-emerald-50 dark:bg-gray-900 w-full">
+        <div class="max-w-4xl mx-auto rounded-xl shadow-2xl overflow-hidden border-t-8 transition-colors duration-300 bg-white dark:bg-gray-800 border-emerald-600 dark:border-yellow-500">
+            <div class="p-6 md:p-8 text-center border-b bg-emerald-600 dark:bg-gray-900 border-emerald-700 dark:border-gray-700">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-yellow-400 drop-shadow-md">UJIAN SELESAI</h1>
+                <p class="mt-2 font-medium text-emerald-100 dark:text-gray-300">Terima kasih telah mengikuti ujian.</p>
+            </div>
+            
+            <div class="p-6 md:p-10">
+                <div class="flex flex-col items-center justify-center mb-10 border-b pb-10 border-gray-200 dark:border-gray-700">
+                    <span class="text-xl font-bold mb-3 tracking-wider uppercase text-gray-500 dark:text-gray-400">Nilai Akhir Anda</span>
+                    <div id="final-score" class="text-7xl md:text-8xl font-black drop-shadow-sm text-emerald-600 dark:text-yellow-400">
+                        0
+                    </div>
+                    <span id="final-total" class="text-sm font-semibold mt-4 bg-opacity-20 px-4 py-1 rounded-full bg-emerald-100 dark:bg-gray-600 text-emerald-800 dark:text-gray-300">
+                        Dari total 0 Soal
+                    </span>
+                </div>
+
+                <h2 class="text-2xl font-bold mb-6 border-l-4 pl-4 text-gray-800 dark:text-white border-emerald-600 dark:border-yellow-500">Review Jawaban</h2>
+                <div id="review-list" class="space-y-0 border rounded-xl overflow-hidden border-gray-300 dark:border-gray-700">
+                    <!-- Review items injected by JS -->
+                </div>
+                
+                <div class="mt-10 flex justify-center">
+                    <button onclick="logout()" class="px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg shadow-lg transition-all flex items-center gap-2 transform hover:scale-105">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                        KEMBALI KE BERANDA LOGIN
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================== PROFILE MODAL ================== -->
+    <div id="profile-modal" class="hidden-view fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm p-4">
+        <div class="w-full max-w-sm rounded-2xl shadow-2xl overflow-hidden transform transition-all bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+            <div class="p-4 flex justify-between items-center border-b bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700">
+                <h3 class="font-extrabold text-lg text-gray-800 dark:text-white">MENU PESERTA</h3>
+                <button onclick="closeProfileModal()" class="p-1.5 rounded-md hover:bg-red-100 hover:text-red-500 transition-colors text-gray-500 dark:text-gray-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="p-6 space-y-4">
+                <button onclick="logout()" class="w-full py-3.5 px-4 bg-red-500 hover:bg-red-600 text-white font-bold rounded-xl shadow-sm flex items-center justify-center gap-2 transition-transform transform active:scale-95">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+                    KEMBALI KE BERANDA
+                </button>
+                <button onclick="closeProfileModal()" class="w-full py-3.5 px-4 font-bold rounded-xl shadow-sm flex items-center justify-center gap-2 transition-transform transform active:scale-95 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    LANJUT MENGERJAKAN
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA SOAL ---
+        const questionsBank1 = [
+            { id: "b1", question: "Nasab ayah dan ibu nabi Muhammad saw mempunyai ikatan darah pada kakeknya yang bernama…", options: ["Hasyim", "Kilab", "Qushay", "Murrah"], answer: "Kilab" },
+            { id: "b2", question: "Sakha dapat diartikan sebagai ...", options: ["Keberanian", "Kejujuran", "Kedermawanan", "Kesabaran"], answer: "Kedermawanan" },
+            { id: "b3", question: "Nabi Muhammad disusui oleh…", options: ["Siti Aminah", "Tsuwaibah", "Halimatus Sa’diyah", "Ummu Aiman"], answer: "Halimatus Sa’diyah" },
+            { id: "b4", question: "Qur’an surat Ali imran ayat 103 menjelaskan tentang…", options: ["Persaudaraan", "Toleransi", "Pendidikan", "Peperangan"], answer: "Persaudaraan" },
+            { id: "b5", question: "Putri bungsu Nabi Muhammad saw adalah…", options: ["Zainab", "Ruqayyah", "Ummu Kultsum", "Fatimah Az-zahra"], answer: "Fatimah Az-zahra" },
+            { id: "b6", question: "Persaudaraan dalam bahasa arab adalah…", options: ["Ukhuwah", "Mahabbah", "Tasamuh", "Ta'awun"], answer: "Ukhuwah" },
+            { id: "b7", question: "Tiga karya besar yang dihasilkan Nabi Muhammad saw adalah, kecuali…", options: ["Membangun Masjid", "Mempersaudarakan Muhajirin dan Anshar", "Membuat Piagam Madinah", "Tauhidul insaniyah"], answer: "Tauhidul insaniyah" },
+            { id: "b8", question: "Rasulullah SAW diutus ke muka bumi untuk menyempurnakan…", options: ["Harta Manusia", "Akhlak Manusia", "Ilmu Manusia", "Bentuk Manusia"], answer: "Akhlak Manusia" },
+            { id: "b9", question: "Nabi Muhammad saw mernilki gelar Al-Amin, yang artinya…", options: ["Orang yang cerdas", "Orang yang dapat dipercaya", "Orang yang bijaksana", "Orang yang berani"], answer: "Orang yang dapat dipercaya" },
+            { id: "b10", question: "Dalam ajaran islam ada dua macam akhlak, yaitu…", options: ["Akhlaq mahmudah dan akhlaq mazmumah", "Akhlaq mubah dan makruh", "Akhlaq wajib dan sunnah", "Akhlaq batin dan dzahir"], answer: "Akhlaq mahmudah dan akhlaq mazmumah" },
+            { id: "b11", question: "Metode dakwah Rasulullah salah satunya adalah hikmah yaitu…", options: ["Berdebat keras", "Memberi nasihat yang baik", "Memaksa secara halus", "Memberi hadiah"], answer: "Memberi nasihat yang baik" },
+            { id: "b12", question: "Akhlak mahmudah artinya akhlak…", options: ["Tercela", "Buruk", "Biasa saja", "Terpuji/Baik"], answer: "Terpuji/Baik" },
+            { id: "b13", question: "Seorang pengemis yang menghina Nabi di pasar Madinah adalah dari kaum…", options: ["Nasrani", "Majusi", "Bangsa yahudi", "Quraisy"], answer: "Bangsa yahudi" },
+            { id: "b14", question: "Akhlak Mazmumah artinya…", options: ["Akhlak Terpuji", "Akhlak Tercela", "Akhlak Sempurna", "Akhlak Biasa"], answer: "Akhlak Tercela" },
+            { id: "b15", question: "Sebutkan Rukun Iman yang Kelima ...", options: ["Iman kepada Malaikat", "Iman kepada Rasul", "Iman kepada Hari Qiamat", "Iman kepada Qada dan Qadar"], answer: "Iman kepada Hari Qiamat" },
+            { id: "b16", question: "Sebutkan Rukun Iman yang keempat …", options: ["Iman kepada Allah", "Iman kepada Kitab", "Iman kepada Rosul – rosul Allah", "Iman kepada Hari Akhir"], answer: "Iman kepada Rosul – rosul Allah" },
+            { id: "b17", question: "Siapakah Malaikat yang tugasnya mencatat amal baik dan perilaku terpuji?", options: ["Malaikat roqib", "Malaikat atid", "Malaikat jibril", "Malaikat mikail"], answer: "Malaikat roqib" },
+            { id: "b18", question: "Siapa malaikat yang bertugas mencabut nyawa?", options: ["Israfil", "Izrail", "Munkar", "Nakir"], answer: "Izrail" },
+            { id: "b19", question: "Berapakah jumlah ayat yang terdapat dalam surat Al-Fatihah …", options: ["5 ayat", "6 ayat", "7 ayat", "8 ayat"], answer: "7 ayat" },
+            { id: "b20", question: "Ainun mata, anfun hidung, udunun artinya...", options: ["Mulut", "Telinga", "Kepala", "Kaki"], answer: "Telinga" },
+            { id: "b21", question: "Najis sedang di namakan najis...", options: ["Mukhaffafah", "Mutawasithoh", "Mughallazah", "Ma'fu"], answer: "Mutawasithoh" },
+            { id: "b22", question: "Fammun mulut, lisaanun lidah, batnun artinya...", options: ["Dada", "Tangan", "Perut", "Punggung"], answer: "Perut" },
+            { id: "b23", question: "Dokter dalam bhs Arab adalah...", options: ["Fallaahun", "Mudarrisun", "Thobiibun", "Muhandisun"], answer: "Thobiibun" },
+            { id: "b24", question: "Tugas nabi Muhammad saw salah satunya adalah sirajan munira, yang artinya…", options: ["Pemberi peringatan", "Pemberi kabar gembira", "Penerang", "Saksi"], answer: "Penerang" },
+            { id: "b25", question: "Qur’an surat Al-baqarah ayat 45 menjelaskan tentang…", options: ["Perintah Puasa", "Perintah Zakat", "Prilaku khusyuk", "Larangan Riba"], answer: "Prilaku khusyuk" },
+            { id: "b26", question: "Peristiwa luar biasa yang diberikan Allah swt kepada rasul-Nya disebut…", options: ["Karamah", "Ma'unah", "Mukjizat", "Sihir"], answer: "Mukjizat" },
+            { id: "b27", question: "Khusyuk menurut istilah adalah…", options: ["Berteriak", "Kerendahan hati", "Berdiam diri", "Bergerak cepat"], answer: "Kerendahan hati" },
+            { id: "b28", question: "Ada Berapa Tanda Tasdid Pada Lafad Assalaa Mu Alaikum War. Wab.", options: ["SATU", "DUA", "TIGA", "EMPAT"], answer: "DUA" },
+            { id: "b29", question: "Pada usia berapa Nabi Muhammad SAW berdagang bersama Abu Thalib ke Syam?", options: ["10 tahun", "12 tahun", "15 tahun", "25 tahun"], answer: "12 tahun" },
+            { id: "b30", question: "Ayat kedua surat Al Ashr berbunyi ...", options: ["Wal 'ashr", "Innal Insaana Lafii Khusrin", "Illa alladzina amanu", "Watawa saubil haq"], answer: "Innal Insaana Lafii Khusrin" },
+            { id: "b31", question: "Apa nama kerajaan Islam pertama di pulau Jawa?", options: ["Mataram", "Banten", "Demak", "Pajang"], answer: "Demak" },
+            { id: "b32", question: "Rasul memiliki sifat wajib diantaranya bersifat Siddiq, artinya?", options: ["Menyampaikan", "Cerdas", "Dapat dipercaya", "Benar/jujur"], answer: "Benar/jujur" },
+            { id: "b33", question: "Salah satu akhlakul karimah adalah tawaduk yang artinya?", options: ["Pemaaf", "Rendah hati", "Dermawan", "Penyabar"], answer: "Rendah hati" },
+            { id: "b34", question: "Surat yang ke 110 dalam Al Qur’an adalah surat?", options: ["Al Lahab", "Al Kafirun", "An Nashr", "Al Ikhlas"], answer: "An Nashr" },
+            { id: "b35", question: "Zakat yang wajib dikeluarkan pada bulan Romadhon adalah ...", options: ["Zakat Maal", "Zakat Perniagaan", "Zakat Fitrah", "Zakat Profesi"], answer: "Zakat Fitrah" },
+            { id: "b36", question: "Shalat sunat yang mengiringi shalat fardu disebut?", options: ["Shalat Dhuha", "Shalat Tahajud", "Shalat Witir", "Shalat Rawatib"], answer: "Shalat Rawatib" },
+            { id: "b37", question: "Pada tanggal berapa peristiwa isra mi’raj terjadi?", options: ["1 Muharram", "17 Ramadhan", "27 Rajab", "12 Rabiul Awal"], answer: "27 Rajab" },
+            { id: "b38", question: "Kakek nabi Muhammad Abdul Muthalib meninggal pada usia?", options: ["60 tahun", "70 tahun", "80 tahun", "90 tahun"], answer: "80 tahun" },
+            { id: "b39", question: "Salah satu golongan yang berhak menerima zakat adalah gharim. Apa arti gharim?", options: ["Musafir", "Banyak hutang", "Hamba sahaya", "Panitia zakat"], answer: "Banyak hutang" },
+            { id: "b40", question: "Allah menciptakan malaikat dari apa?", options: ["Api", "Tanah", "Angin", "Cahaya"], answer: "Cahaya" },
+            { id: "b41", question: "Salah satu akhlakul karimah adalah syaja’ah yang artinya", options: ["Jujur", "Berani", "Adil", "Bijaksana"], answer: "Berani" },
+            { id: "b42", question: "Urutan surat yang ke berapa Surat Al Kafirun dalam Al Qur’an?", options: ["107", "108", "109", "110"], answer: "109" },
+            { id: "b43", question: "‘Waarsala Alaihim toiron Ababil’ Ayat tersebut terdapat dalam surat ?", options: ["Al Kautsar", "Al Ma'un", "Al Quraish", "Al Fill"], answer: "Al Fill" },
+            { id: "b44", question: "Kapan dilaksanakan salat Idul Adha?", options: ["1 Syawal", "10 Zulhijjah", "9 Dzulhijjah", "1 Muharram"], answer: "10 Zulhijjah" },
+            { id: "b45", question: "Pada waktu Nabi Muhammad saw melakukan mi’raj beliau bertemu dengan nabi Ibrahim as pada langit ke berapa?", options: ["Langit ke 5", "Langit ke 6", "Langit ke 7", "Langit ke 4"], answer: "Langit ke 7" },
+            { id: "b46", question: "Apa sebutan untuk orang yang keluar dari agama Islam?", options: ["Musyrik", "Munafik", "Murtad", "Fasiq"], answer: "Murtad" },
+            { id: "b47", question: "Apa nama tajwid apabila huruf nun mati atau tanwin bertemu huruf alif dan dibaca jelas?", options: ["Idgham", "Ikhfa", "Iqlab", "Idzar"], answer: "Idzar" },
+            { id: "b48", question: "Arti dari At Takasur adalah", options: ["Kuda perang", "Hari Kiamat", "Bermegah megahan", "Masa/Waktu"], answer: "Bermegah megahan" },
+            { id: "b49", question: "لا اله الا الله disebut dengan bacaan", options: ["Tahmid", "Takbir", "Tasbih", "Tahlil"], answer: "Tahlil" },
+            { id: "b50", question: "Zaman sebelum diciptakan alam semesta disebut.", options: ["Zaman Purba", "Zaman Batu", "Zaman Azali", "Zaman Akhir"], answer: "Zaman Azali" },
+            { id: "b51", question: "Tahun berapakah Abu Bakar dilahirkan", options: ["570 Masehi", "571 Masehi", "573 Masehi", "575 Masehi"], answer: "573 Masehi" },
+            { id: "b52", question: "Ada berapa golongan Mustahik zakat", options: ["6", "7", "8", "9"], answer: "8" },
+            { id: "b53", question: "Shalat yang dilakukan pada saat matahari mulai naik sampai menjelang siang disebut", options: ["Shalat Tahajud", "Shalat dhuha", "Shalat Istikharah", "Shalat Hajat"], answer: "Shalat dhuha" },
+            { id: "b54", question: "Apa sebutan untuk zakat yang bertujuan membersihkan harta benda?", options: ["Zakat Fitrah", "Zakat profesi", "Zakat maal", "Zakat perniagaan"], answer: "Zakat maal" },
+            { id: "b55", question: "Allah memiliki nama Al Ghaffar yang artinya", options: ["Maha Penyayang", "Maha Pengasih", "Maha Perkasa", "Maha pengampun"], answer: "Maha pengampun" },
+            { id: "b56", question: "Berdiam diri didalam mesjid dalam rangka pendekatan diri kepada Allah disebut", options: ["Tawaf", "Sa'i", "I’tikaf", "Tahajud"], answer: "I’tikaf" },
+            { id: "b57", question: "Berapakah jumlah ayat yang terdapat dalam surat Al Lail", options: ["20 ayat", "21 ayat", "22 ayat", "23 ayat"], answer: "21 ayat" },
+            { id: "b58", question: "Arti dari Al Ma’un adalah", options: ["Bermegah-megahan", "Waktu dhuha", "Barang yang berguna", "Segumpal darah"], answer: "Barang yang berguna" },
+            { id: "b59", question: "Allah memiliki nama Al Wahid yang artinya", options: ["Maha Besar", "Maha Mengetahui", "Maha Kuasa", "Maha Esa"], answer: "Maha Esa" },
+            { id: "b60", question: "Puasa sunah yang dilaksanakan setiap tanggal 10 muharam disebut", options: ["Puasa Arafah", "Puasa Asyura", "Puasa Syawal", "Puasa Daud"], answer: "Puasa Asyura" },
+            { id: "b61", question: "Nabi Muhammad saw diajak ibunya menziarahi makam ayahnya saat berusia", options: ["4 tahun", "5 tahun", "6 tahun", "7 tahun"], answer: "6 tahun" },
+            { id: "b62", question: "Allah Mustahil bersifat ta’adud artinya", options: ["Bodoh", "Mati", "Banyak/terbilang", "Lemah"], answer: "Banyak/terbilang" },
+            { id: "b63", question: "Dapat menghidupkan orang mati merupakan mujizat dari", options: ["Nabi Musa as", "Nabi Ibrahim as", "Nabi Isa as", "Nabi Nuh as"], answer: "Nabi Isa as" },
+            { id: "b64", question: "Salah satu nama nama hari kiamat yaitu Yaumul ba’ts yang artinya", options: ["Hari pembalasan", "Hari penimbangan", "Hari perhitungan", "Hari berbangkit"], answer: "Hari berbangkit" },
+            { id: "b65", question: "Al Qur’an bisa disebut juga Al Mubiin, artinya", options: ["Pembeda", "Penawar", "Penjelas", "Peringatan"], answer: "Penjelas" },
+            { id: "b66", question: "Siapa nama istri Nabi Muhammad SAW yang dinikahi pada saat beliau berusia 25 tahun?", options: ["Siti Aisyah", "Siti Saudah", "Siti Hafshah", "Siti Khadijah"], answer: "Siti Khadijah" },
+            { id: "b67", question: "Setiap tanggal berapa Shalat Idul adha dilaksanakan?", options: ["1 Syawal", "10 Dzulhijjah", "1 Muharram", "12 Rabiul Awal"], answer: "10 Dzulhijjah" },
+            { id: "b68", question: "Apa arti Al-Wahab?", options: ["Maha Pengasih", "Maha Pemberi", "Maha Mengetahui", "Maha Bijaksana"], answer: "Maha Pemberi" },
+            { id: "b69", question: "Nabi muhammad saw dan siti khadjah dikarunia berapa orang anak?", options: ["4 anak", "5 anak", "6 anak", "7 anak"], answer: "6 anak" },
+            { id: "b70", question: "Ali mendapatkan gelar baabul ilmi, apa artinya?", options: ["Pedang Allah", "Singa Allah", "Pemisah yang haq dan bathil", "Gerbang atau pintu ilmu"], answer: "Gerbang atau pintu ilmu" },
+            { id: "b71", question: "Rasul memiliki sifat mustahil diantaranya bersifat kitman, artinya?", options: ["Bodoh", "Berdusta", "Berkhianat", "Menyembunyikan"], answer: "Menyembunyikan" },
+            { id: "b72", question: "Sikap berharap akan adanya kebaikan merupakan pengertian dari?", options: ["Pesimis", "Optimis", "Tawakkal", "Ikhtiar"], answer: "Optimis" },
+            { id: "b73", question: "Surat yang ke 113 dalam Al Qur’an adalah surat?", options: ["Al Ikhlas", "An Nas", "Al Falaq", "Al Lahab"], answer: "Al Falaq" },
+            { id: "b74", question: "Ada berapa ayat surat Al Insyirah?", options: ["6 ayat", "7 ayat", "8 ayat", "9 ayat"], answer: "8 ayat" },
+            { id: "b75", question: "Shalat sunah yang dilaksanakan setiap tanggal 1 syawal disebut?", options: ["Shalat Idul Adha", "Shalat Tahajud", "Shalat Idul Fitri", "Shalat Witir"], answer: "Shalat Idul Fitri" },
+            { id: "b76", question: "Nabi Muhammad saw lahir pada tanggal?", options: ["12 rabiul awal", "17 Ramadhan", "1 Muharram", "27 Rajab"], answer: "12 rabiul awal" },
+            { id: "b77", question: "Siti khadijah menikah dengan nabi muhammad saw pada usia?", options: ["25 tahun", "30 tahun", "35 tahun", "40 tahun"], answer: "40 tahun" },
+            { id: "b78", question: "Kepada siapakah kitab Al Qur’an diturunkan?", options: ["Nabi Musa as", "Nabi Isa as", "Nabi Daud as", "Nabi Muhammad saw"], answer: "Nabi Muhammad saw" },
+            { id: "b79", question: "Rasul memiliki sifat mustahil diantaranya bersifat kizbun, artinya?", options: ["Bodoh", "Menyembunyikan", "Dusta", "Berkhianat"], answer: "Dusta" },
+            { id: "b80", question: "Menggunakan sesuatu secara berlebihan merupakan pengertian dari?", options: ["Pelit", "Sombong", "Boros", "Riya"], answer: "Boros" },
+            { id: "b81", question: "Urutan surat yang ke berapa Surat Al Lahab dalam Al Qur’an ?", options: ["Ke 110", "Ke 111", "Ke 112", "Ke 113"], answer: "Ke 111" },
+            { id: "b82", question: "Ada berapa ayat surat Ad Dhuha?", options: ["9 Ayat", "10 Ayat", "11 Ayat", "12 Ayat"], answer: "11 Ayat" },
+            { id: "b83", question: "Siapakah nama ayah Nabi Yusuf A.s ...", options: ["Nabi Ibrahim A.s", "Nabi Ishaq A.s", "Nabi Ismail A.s", "Nabi Ya’kub A.s"], answer: "Nabi Ya’kub A.s" },
+            { id: "b84", question: "Urutan surat yang ke 15 dalam Al qur’an adalah ...", options: ["Surat Ar Ra'd", "Surat Ibrahim", "Surat Al Hijr", "Surat An Nahl"], answer: "Surat Al Hijr" },
+            { id: "b85", question: "Arti dari Al fatihah adalah ...", options: ["Pembukaan", "Penutupan", "Sapi Betina", "Keluarga Imran"], answer: "Pembukaan" },
+            { id: 86, question: "Allah memiliki sifat Qidam artinya..", options: ["Kekal", "Berbeda dengan makhluk", "Berdiri sendiri", "Terdahulu"], answer: "Terdahulu" },
+            { id: 87, question: "Tongkat bisa berubah menjadi ular dan membelah lautan adalah mujizat dari ...", options: ["Nabi Isa", "Nabi Ibrahim", "Nabi Musa", "Nabi Sulaiman"], answer: "Nabi Musa" },
+            { id: 88, question: "Tahun berapakah Khalifah Utsman wafat ?....H", options: ["Tahun 23 H", "Tahun 35 H", "Tahun 40 H", "Tahun 13 H"], answer: "Tahun 35 H" },
+            { id: 89, question: "Siapakah yang menjadi sekretaris negara dimasa khalifah abu bakar?", options: ["Umar bin Khattab", "Ali bin Abi Thalib", "Zaid bin Tsabit", "Utsman bin Affan"], answer: "Utsman bin Affan" },
+            { id: 90, question: "Doa yang dibaca setelah takbiratul ihram dalam shalat adalah ......", options: ["Doa I'tidal", "Doa iftitah", "Doa Qunut", "Tahiyat"], answer: "Doa iftitah" },
+            { id: "s1", question: "Siapakah sahabat nabi yang ditunjuk mengumpulkan ayat ayat alquran ?", options: ["Umar bin Khattab", "Zaid bin Tsabit", "Ali bin Abi Thalib", "Abu Bakar"], answer: "Zaid bin Tsabit" },
+            { id: "s2", question: "Siapakah Sumayyah binti Khayyat ?", options: ["Istri Abu Jahal", "Wanita beriman pertama yang mati syahid dalam islam", "Pengasuh Nabi Muhammad", "Wanita yang ahli berdagang"], answer: "Wanita beriman pertama yang mati syahid dalam islam" },
+            { id: "s3", question: "Berikut adalah sepupu sekaligus menantu dari nabi Islam Muhammad dan penerusnya, sebagai Khalifah keempat yaitu?", options: ["Utsman bin Affan", "Abu Bakar Ash-Shiddiq", "Ali bin Abi Thalib", "Umar bin Khattab"], answer: "Ali bin Abi Thalib" },
+            { id: "s4", question: "Siapa nama budak Sayyidah Khadijah yang menemani Nabi Muhammad SAW dalam perjalanan dagangnya ke negeri Syam?", options: ["Bilal bin Rabah", "Zaid bin Haritsah", "Maisaroh", "Abu Dzar"], answer: "Maisaroh" },
+            { id: "s5", question: "Siapa rekan bisnis terbaik Nabi Muhammad SAW yang tidak pernah berselisih dengannya?", options: ["Abu Jahal", "Abu Sufyan", "As-Saib bin Abus-Saib", "Umayyah bin Khalaf"], answer: "As-Saib bin Abus-Saib" },
+            { id: "s6", question: "Siapa orang yang paling vokal menentang dakwah Nabi Muhammad SAW dari kaum Quraisy?", options: ["Abu Jahal dan Abu Lahab", "Abu Bakar dan Umar", "Hamzah dan Abbas", "Khalid dan Amr"], answer: "Abu Jahal dan Abu Lahab" },
+            { id: "s7", question: "Berapa lama Nabi Muhammad hidup bersama Sayyidah Aisyah?", options: ["Selama 5 tahun", "Selama 9 tahun 5 bulan", "Selama 10 tahun", "Selama 15 tahun"], answer: "Selama 9 tahun 5 bulan" },
+            { id: "s8", question: "Saat dihanyutkan di sungai, Nabi Musa AS ditolong oleh istri...", options: ["Istri Raja Namrud", "Istri Fir'aun", "Istri Abu Lahab", "Istri Pembesar Mesir"], answer: "Istri Fir'aun" },
+            { id: "s9", question: "Nabi Ishaq AS adalah putra Nabi...", options: ["Nabi Nuh AS", "Nabi Musa AS", "Nabi Ibrahim AS", "Nabi Yakub AS"], answer: "Nabi Ibrahim AS" },
+            { id: "s10", question: "Apa sebutan untuk kaum yang ikut hijrah bersama nabi?", options: ["Anshar", "Khawarij", "Muhajirin", "Mawali"], answer: "Muhajirin" },
+            { id: "s11", question: "Siapa nabi yang dapat berbicara ketika masih bayi?", options: ["Nabi Musa", "Nabi Isa", "Nabi Yahya", "Nabi Ismail"], answer: "Nabi Isa" },
+            { id: "s12", question: "Nabi siapakah yang lahir tanpa seorang bapak?", options: ["Nabi Musa a.s", "Nabi Ibrahim a.s", "Nabi Adam a.s", "Nabi Isa a.s"], answer: "Nabi Isa a.s" },
+            { id: "s13", question: "Gerakan salat sebelum iktidal adalah?", options: ["Sujud", "Rukuk", "Takbiratul Ihram", "Tasyahud"], answer: "Rukuk" },
+            { id: "s14", question: "Apa yang sebaiknya sering dibaca agar seseorang mampu mengendalikan diri dari rasa marah?", options: ["Tahmid", "Tahlil", "Istigfar", "Takbir"], answer: "Istigfar" },
+            { id: "s15", question: "Apa hukum puasa nazar?", options: ["Sunnah", "Wajib", "Makruh", "Mubah"], answer: "Wajib" },
+            { id: "ns1", question: "Surat An-Nas terdiri dari berapa ayat dan apa artinya?", options: ["5 ayat, Waktu Subuh", "6 ayat, Manusia", "4 ayat, Keesaan Allah", "3 ayat, Waktu"], answer: "6 ayat, Manusia" },
+            { id: "ns2", question: "Surat Al-Falaq memiliki arti...", options: ["Manusia", "Gejolak Api", "Waktu Subuh", "Gajah"], answer: "Waktu Subuh" },
+            { id: "ns3", question: "Berapa jumlah ayat dalam surat Al-Ikhlas dan apa maknanya?", options: ["4 ayat, Kemurnian Keesaan Allah", "3 ayat, Pertolongan", "5 ayat, Waktu Subuh", "6 ayat, Orang-orang Kafir"], answer: "4 ayat, Kemurnian Keesaan Allah" },
+            { id: "ns4", question: "Surat Al-Lahab artinya adalah...", options: ["Goncangan", "Pengumpat", "Gejolak Api", "Kuda Perang"], answer: "Gejolak Api" },
+            { id: "ns5", question: "Surat An-Nashr terdiri dari 3 ayat yang berarti...", options: ["Hari Kiamat", "Pertolongan", "Bukti yang Nyata", "Bermegah-megahan"], answer: "Pertolongan" },
+            { id: "ns6", question: "Apa arti dari surat Al-Kafirun dan berapa jumlah ayatnya?", options: ["Orang-Orang Munafik, 5 ayat", "Orang-Orang Musyrik, 7 ayat", "Orang-Orang Kafir, 6 ayat", "Orang-Orang Beriman, 4 ayat"], answer: "Orang-Orang Kafir, 6 ayat" },
+            { id: "ns7", question: "Surat yang berarti 'Nikmat yang Berlimpah' dengan jumlah 3 ayat adalah...", options: ["Al-Ashr", "An-Nashr", "Al-Kautsar", "Al-Ma'un"], answer: "Al-Kautsar" },
+            { id: "ns8", question: "Surat Al-Ma'un memiliki 7 ayat, artinya adalah...", options: ["Barang-Barang yang Berguna", "Suku Quraisy", "Waktu Subuh", "Pengumpat"], answer: "Barang-Barang yang Berguna" },
+            { id: "ns9", question: "Surat Al-Quraisy menceritakan tentang Suku Quraisy dan terdiri dari berapa ayat?", options: ["3 ayat", "4 ayat", "5 ayat", "6 ayat"], answer: "4 ayat" },
+            { id: "ns10", question: "Surat yang dinamai dengan 'Gajah' adalah...", options: ["Al-Baqarah", "Al-Fiil", "Al-Qari'ah", "Az-Zalzalah"], answer: "Al-Fiil" },
+            { id: "ns11", question: "Surat Al-Humazah berarti Pengumpat dan memiliki jumlah ayat sebanyak...", options: ["7 ayat", "8 ayat", "9 ayat", "10 ayat"], answer: "9 ayat" },
+            { id: "ns12", question: "Surat Al-Ashr terdiri dari 3 ayat, maknanya adalah...", options: ["Demi Matahari", "Masa/Waktu", "Gejolak Api", "Pertolongan"], answer: "Masa/Waktu" },
+            { id: "ns13", question: "Surat At-Takatsur memiliki 8 ayat dan artinya adalah...", options: ["Bermegah-megahan", "Goncangan", "Bukti Nyata", "Kuda Perang"], answer: "Bermegah-megahan" },
+            { id: "ns14", question: "Surat Al-Qari'ah yang berarti Hari Kiamat memiliki ayat sebanyak...", options: ["10 ayat", "11 ayat", "12 ayat", "13 ayat"], answer: "11 ayat" },
+            { id: "ns15", question: "Surat Al-Adiyat menceritakan tentang Kuda Perang yang Berlari Kencang dengan jumlah...", options: ["9 ayat", "10 ayat", "11 ayat", "12 ayat"], answer: "11 ayat" },
+            { id: "ns16", question: "Surat Az-Zalzalah berarti Goncangan, berapakah jumlah ayatnya?", options: ["7 ayat", "8 ayat", "9 ayat", "10 ayat"], answer: "8 ayat" },
+            { id: "ns17", question: "Surat Al-Bayyinah memiliki 8 ayat, artinya adalah...", options: ["Bukti yang Nyata", "Agama yang Lurus", "Hari Pembalasan", "Malam Kemuliaan"], answer: "Bukti yang Nyata" }
+        ];
+
+        const questionsBank2 = [
+            { id: "hj1", question: "Perbuatan menyekutukan Allah dengan sesuatu yang lain sama seperti ......", options: ["Kufur", "Fasiq", "Syirik", "Riya"], answer: "Syirik" },
+            { id: "hj2", question: "Paman Nabi Muhammad SAW yang wafat karena terbunuh ketika Perang Tabuk yaitu....", options: ["Abu Thalib", "Abbas bin Abdul Muthalib", "Abu Jahal", "Hamzah bin Abdul Muthalib"], answer: "Hamzah bin Abdul Muthalib" },
+            { id: "hj3", question: "Shalat sunah yang mengiringi shalat wajib adalah....", options: ["Dhuha", "Tahajud", "Rawatib", "Witir"], answer: "Rawatib" },
+            { id: "hj4", question: "Untuk membuktikan kebenaran Allah SWT dapat menggunakan dalil naqli dan dalil aqli. Dalil naqli adalah dalil berdasarkan...", options: ["Akal pikiran", "Al-Quran dan hadis.", "Sejarah", "Pendapat Ulama"], answer: "Al-Quran dan hadis." },
+            { id: "hj5", question: "Takbir awal dimulainya shalat adalah ......", options: ["Takbir Intiqal", "Takbiratul ihram", "Tahiyat", "I'tidal"], answer: "Takbiratul ihram" },
+            { id: "hj6", question: "Al-Quran terdiri dari berapa juz dan surah?", options: ["30 juz dan 114 surah", "30 juz dan 110 surah", "29 juz dan 114 surah", "30 juz dan 144 surah"], answer: "30 juz dan 114 surah" },
+            { id: "hj7", question: "Khalifah kedua dan diberi gelar amirul mukminin yaitu ......", options: ["Abu Bakar", "Ali bin Abi Thalib", "Umar bin khattab", "Utsman bin Affan"], answer: "Umar bin khattab" },
+            { id: "hj8", question: "Shalat diawali dengan takbiratul ihram. Tahapan mengakhiri shalat adalah....", options: ["Sujud", "Ruku'", "Salam", "Tasyahud Akhir"], answer: "Salam" },
+            { id: "hj9", question: "Bagian tubuh yang harus ditutupi disebut......", options: ["Mahram", "Aurat", "Hasanah", "Najis"], answer: "Aurat" },
+            { id: "hj10", question: "Khalifah pertama setelah Nabi Muhammad SAW adalah ......", options: ["Umar bin Khattab", "Abu bakar", "Ali bin Abi Thalib", "Utsman bin Affan"], answer: "Abu bakar" },
+            { id: "hj11", question: "Nabi dan Rasul yang mendapatkan sebutan ulul azmi antara lain ....", options: ["Nabi Nuh, Nabi Ibrahim, Nabi Musa, Nabi Isa, Nabi Muhammad SAW", "Nabi Adam, Nabi Idris, Nabi Nuh, Nabi Hud, Nabi Shaleh", "Nabi Yusuf, Nabi Ayub, Nabi Sulaiman, Nabi Daud, Nabi Yunus", "Nabi Zakaria, Nabi Yahya, Nabi Isa, Nabi Ilyas, Nabi Ilyasa"], answer: "Nabi Nuh, Nabi Ibrahim, Nabi Musa, Nabi Isa, Nabi Muhammad SAW" },
+            { id: "hj12", question: "Apa sebutan untuk barisan yang ada dalam salat jamaah?", options: ["Sutrah", "Shaf.", "Rakaat", "Mihrab"], answer: "Shaf." },
+            { id: "hj13", question: "Malaikat yang bertugas menjaga surga yaitu....", options: ["Malik", "Ridwan", "Mikail", "Atid"], answer: "Ridwan" },
+            { id: "hj14", question: "Salah satu sifat para nabi dan rasul adalah Fathonah. Artinya.....", options: ["Dapat dipercaya", "Menyampaikan", "Benar/jujur", "Bijaksana/cerdas"], answer: "Bijaksana/cerdas" },
+            { id: "hj15", question: "Siapa raja yang memimpin tentara gajah ketika menyerang Ka’bah pada saat Rasulullah lahir?", options: ["Firaun", "Raja Namrud", "Abrahah", "Heraklius"], answer: "Abrahah" },
+            { id: "hj16", question: "Sahabat Rasulullah yang pernah menjadi khalifah dan sering dijuluki gerbangnya ilmu adalah....", options: ["Utsman bin Affan", "Abu Bakar", "Umar bin Khattab", "Ali bin Abi Thalib"], answer: "Ali bin Abi Thalib" },
+            { id: "hj17", question: "Shalat wajib yang tidak bisa digabung atau diringkas adalah shalat .....", options: ["Dzuhur", "Ashar", "Maghrib", "Shubuh"], answer: "Shubuh" },
+            { id: "hj18", question: "Apa sebutan dari bacaan alhamdulillahi Rabbil ‘alamin?", options: ["Takbir", "Tahmid/Hamdalah", "Tasbih", "Tahlil"], answer: "Tahmid/Hamdalah" },
+            { id: "hj19", question: "Shalat sunah yang tidak ada sujud dan ruku’nya adalah ......", options: ["Shalat Dhuha", "Shalat Tahajud", "Shalat jenazah", "Shalat Hajat"], answer: "Shalat jenazah" },
+            { id: "hj20", question: "Wahyu terakhir diturunkan kepada Nabi Muhammad SAW adalah surat ....", options: ["Al-Baqarah ayat 281", "Al–Maidah ayat 3", "Al-Fatihah", "An-Nasr"], answer: "Al–Maidah ayat 3" },
+            { id: "hj21", question: "Orang yang menerima zakat yaitu ......", options: ["Muzakki", "Amil", "Mustahiq", "Gharim"], answer: "Mustahiq" },
+            { id: "hj22", question: "Surah Al Quran yang pertama kali diturunkan adalah ......", options: ["Al Fatihah", "Al Baqarah", "Al ‘alaq", "Al Mudatsir"], answer: "Al ‘alaq" },
+            { id: "hj23", question: "Gerakan bangun dari ruku’ ketika shalat disebut .....", options: ["Sujud", "I’tidal", "Tahiyat", "Salam"], answer: "I’tidal" },
+            { id: "hj24", question: "Nama raja yang mencoba membakar Nabi Ibrahim AS adalah ....", options: ["Firaun", "Heraklius", "Raja Namrud", "Abrahah"], answer: "Raja Namrud" },
+            { id: "hj25", question: "Apa arti Al-Wahab?", options: ["Maha Penyayang", "Maha Pemberi.", "Maha Mengetahui", "Maha Kuasa"], answer: "Maha Pemberi." },
+            { id: "hj26", question: "Pada tanggal 1 syawwal, puasa hukumnya .......", options: ["Wajib", "Sunnah", "Makruh", "Haram"], answer: "Haram" },
+            { id: "hj27", question: "Peristiwa turunnya Al-Quran diperingati dengan....", options: ["Isra Mi'raj", "Nuzulul qur’an", "Maulid Nabi", "Tahun Baru Islam"], answer: "Nuzulul qur’an" },
+            { id: "hj28", question: "Surah terpanjang dalam Al Quran adalah ......", options: ["Al Imran", "An Nisa", "Al Baqarah", "Al Ma'idah"], answer: "Al Baqarah" },
+            { id: "hj29", question: "Rukun iman yang keenam yakni ....", options: ["Iman kepada hari kiamat", "Iman kepada rasul", "Iman kepada kitab", "Iman kepada qadha dan qadar"], answer: "Iman kepada qadha dan qadar" },
+            { id: "hj30", question: "Apa yang terdapat di dalam Kabah?", options: ["Patung berhala", "Makam Nabi", "Hajar Aswad (Batu Hitam) dan beberapa benda suci lainnya", "Sumur Zamzam"], answer: "Hajar Aswad (Batu Hitam) dan beberapa benda suci lainnya" },
+            { id: "hj31", question: "Ma’mum yang terlambat dinamakan dengan......", options: ["Muadzin", "Imam", "Masbuq", "Munfarid"], answer: "Masbuq" },
+            { id: "hj32", question: "Nama tempat ibadah umat Islam yang menghadap ke arah Kabah di Mekah saat melaksanakan shalat adalah....", options: ["Mimbar", "Mihrab atau Qibla", "Menara", "Bedug"], answer: "Mihrab atau Qibla" },
+            { id: "hj33", question: "Hari kiamat sering disebut sebagai hari ditimbangnya amal perbuatan manusia atau....", options: ["Yaumul Ba'ats", "Yaumul Mahsyar", "Yaumul Mizan", "Yaumul Hisab"], answer: "Yaumul Mizan" },
+            { id: "hj34", question: "Allah memiliki sifat wahdaniyat. Artinya......", options: ["Berkuasa", "Mendengar", "Melihat", "Esa"], answer: "Esa" },
+            { id: "hj35", question: "Ruhul Amin adalah julukan yang diberikan kepada malaikat.....", options: ["Mikail", "Israfil", "Izrail", "Jibril"], answer: "Jibril" },
+            { id: "hj36", question: "Jika ada huruf nun mati atau tanwin bertemu dengan huruf alif maka dibaca jelas, hukum bacaan ini adalah......", options: ["Ikhfa", "Idgham", "Iqlab", "Idzhar"], answer: "Idzhar" },
+            { id: "hj37", question: "Siapakah istri pertama Nabi Muhammad SAW?", options: ["Aisyah binti Abu Bakar", "Khadijah binti Khuwailid", "Hafshah binti Umar", "Zainab binti Jahsy"], answer: "Khadijah binti Khuwailid" },
+            { id: "hj38", question: "Ibadah puasa diwajibkan bagi orang-orang beriman sesuai Al-Quran surah apa dan ayat berapa...", options: ["Al-Baqarah ayat 183", "Al-Baqarah ayat 255", "Al-Imran ayat 103", "Al-Maidah ayat 3"], answer: "Al-Baqarah ayat 183" },
+            { id: "hj39", question: "Labaikallahumma labaik adalah bacaan yang dilafadzkan jamaah haji dan disebut bacaan ......", options: ["Takbir", "Tahmid", "Talbiyah", "Tahlil"], answer: "Talbiyah" },
+            { id: "hj40", question: "Orang yang bertugas mengumpulkan dan mengelola zakat disebut ......", options: ["Muzakki", "Mustahiq", "Amil", "Gharim"], answer: "Amil" },
+            { id: "hj41", question: "Perjalanan Rasulullah dari Masjidil Haram ke Masjidil Aqsa lalu ke langit disebut ....", options: ["Hijrah", "Isra Mi'raj", "Fathu Makkah", "Haji Wada'"], answer: "Isra Mi'raj" },
+            { id: "hj42", question: "Siapakah yang dianggap sebagai Khalifah pertama dalam Islam setelah wafatnya Nabi Muhammad SAW?", options: ["Umar bin Khattab", "Ali bin Abi Thalib", "Utsman bin Affan", "Abu Bakar Siddiq"], answer: "Abu Bakar Siddiq" },
+            { id: "hj43", question: "Apa yang dimaksud dengan Qiyamul Lail dalam Islam?", options: ["Puasa sunnah", "Ibadah haji", "Ibadah shalat malam", "Membayar zakat"], answer: "Ibadah shalat malam" },
+            { id: "hj44", question: "Surat Al Kahfi dinamai juga Ashabul Kahfi. Artinya adalah....", options: ["Sapi Betina", "Penghuni gua", "Orang-orang yang beriman", "Hari kiamat"], answer: "Penghuni gua" },
+            { id: "hj45", question: "Tempat dikumpulkan manusia setelah dari alam kubur adalah....", options: ["Surga", "Neraka", "Padang Mahsar", "Jembatan Shirathal Mustaqim"], answer: "Padang Mahsar" },
+            { id: "hj46", question: "Dalil yang bersumber dari Al-Quran dan hadis disebut sebagai ....", options: ["Dalil Aqli", "Dalil Naqli", "Ijma'", "Qiyas"], answer: "Dalil Naqli" },
+            { id: "hj47", question: "Yatsrib adalah nama lain kota ........", options: ["Mekkah", "Ta'if", "Madinah", "Yerusalem"], answer: "Madinah" },
+            { id: "hj48", question: "Allah SWT memiliki 99 asmaul husna dan salah satunya ialah Al-Ghafur. Artinya....", options: ["Yang Maha Pengasih", "Yang Maha Penyayang", "Yang Maha Pengampun", "Yang Maha Mengetahui"], answer: "Yang Maha Pengampun" },
+            { id: "hj49", question: "Apa nama tempat Rasulullah mengajarkan baca tulis Al-Qur'an dan ilmu tauhid kepada penduduk Mekkah di awal dakwah?", options: ["Masjidil Haram", "Darul Arqam", "Kuttab", "Baitul Maqdis"], answer: "Kuttab" },
+            { id: "hj50", question: "Surat apa yang menceritakan tentang golongan pendusta agama?", options: ["Al-Ma'un.", "Al-Kafirun", "Al-Lahab", "Al-Ikhlas"], answer: "Al-Ma'un." },
+            { id: "hj51", question: "Apa nama gerakan mengangkat kedua tangan saat melakukan salat dalam agama Islam?", options: ["Ruku'", "Sujud", "Takbir.", "Salam"], answer: "Takbir." },
+            { id: "hj52", question: "Apa sebutan untuk kotoran yang ada di luar tubuh manusia seperti nasi basi, darah, bangkai ayam, dan sejenisnya?", options: ["Hadas", "Najis.", "Kotoran", "Debu"], answer: "Najis." },
+            { id: "hj53", question: "Sebagian besar kaum Madyan tetap kafir dan tak mau mengikuti Nabi Syu'aib, kemudian Allah SWT menimpakan azab kepada mereka berupa...", options: ["Banjir besar", "Hujan batu", "Angin kencang Dan Gempa yang dahsyat.", "Penyakit menular"], answer: "Angin kencang Dan Gempa yang dahsyat." },
+            { id: "hj54", question: "Apa arti dari Al-Falaq?", options: ["Malam", "Waktu Subuh.", "Siang", "Sore"], answer: "Waktu Subuh." },
+            { id: "hj55", question: "Nabi Syu'aib bergelar Katibul Anbiya, apa artinya?", options: ["Bapak para nabi", "Teman para nabi", "Juru bicara para nabi.", "Pemimpin para nabi"], answer: "Juru bicara para nabi." },
+            { id: "hj56", question: "Apa yang disembah kaum Nabi Syu'aib?", options: ["Patung berhala", "Matahari", "Aikah (Hutan Lebat).", "Api"], answer: "Aikah (Hutan Lebat)." },
+            { id: "hj57", question: "Apa hukum percaya kepada qada dan qadar?", options: ["Sunnah", "Mubah", "Wajib.", "Makruh"], answer: "Wajib." },
+            { id: "hj58", question: "Apa arti dari husnuzhon?", options: ["Berprasangka buruk", "Berbohong", "Sombong", "Berprasangka baik."], answer: "Berprasangka baik." },
+            { id: "hj59", question: "Nabi Muhammad SAW memiliki sifat tabligh, apa artinya?", options: ["Jujur", "Dapat dipercaya", "Cerdas", "Menyampaikan."], answer: "Menyampaikan." },
+            { id: "hj60", question: "Siapa nabi yang memiliki mukjizat membelah lautan?", options: ["Nabi Ibrahim", "Nabi Isa", "Nabi Sulaiman", "Nabi Musa."], answer: "Nabi Musa." },
+            { id: "hj61", question: "Agar dapat melaksanakan salat dan ibadah lainnya, apa yang harus dilakukan wanita usai selesai haid?", options: ["Wudhu", "Tayamum", "Mandi besar atau mandi junub.", "Mencuci muka"], answer: "Mandi besar atau mandi junub." },
+            { id: "hj62", question: "Apa nama surat dalam Al-Quran yang dijuluki sebagai ulumul Qur'an?", options: ["Surat Al-Baqarah", "Surat Yasin", "Surat Al-Ikhlas", "Surat Al-Fatihah."], answer: "Surat Al-Fatihah." },
+            { id: "hj63", question: "Siapa khalifah keempat yang juga menantu Nabi Muhammad SAW?", options: ["Abu Bakar", "Umar bin Khattab", "Utsman bin Affan", "Ali bin Abi Thalib."], answer: "Ali bin Abi Thalib." },
+            { id: "hj64", question: "Apa sebutan untuk bersuci dengan debu yang dapat dilakukan ketika tak ada air atau dalam keadaan sakit?", options: ["Wudhu", "Mandi besar", "Tayamum.", "Istinja'"], answer: "Tayamum." },
+            { id: "hj65", question: "Abu Bakar mendapat julukan Ash-Shidiq. Apa arti dari Ash-Shidiq?", options: ["Pemberani", "Pembenar atau yang membenarkan.", "Cerdas", "Penyabar"], answer: "Pembenar atau yang membenarkan." },
+            { id: "hj66", question: "Apa sebutan untuk orang yang suka pamer atau memperlihatkan amal baiknya untuk mendapatkan pujian dari orang lain?", options: ["Ujub", "Takabur", "Riya'.", "Hasad"], answer: "Riya'." },
+            { id: "hj67", question: "Kapan perintah salat wajib lima waktu diturunkan kepada Rasulullah?", options: ["Saat hijrah ke Madinah", "Saat perang Badar", "Saat Fathu Makkah", "Saat Isra' Miraj."], answer: "Saat Isra' Miraj." },
+            { id: "hj68", question: "Siapa nabi yang mendapat julukan bapak para nabi?", options: ["Nabi Nuh AS", "Nabi Musa AS", "Nabi Ibrahim AS.", "Nabi Muhammad SAW"], answer: "Nabi Ibrahim AS." },
+            { id: "hj69", question: "Apa keistimewaan Nabi Yusuf AS dari Allah SWT?", options: ["Membelah lautan", "Berbicara dengan hewan", "Kemampuan menafsirkan mimpi.", "Menghidupkan orang mati"], answer: "Kemampuan menafsirkan mimpi." },
+            { id: "hj70", question: "Al-Quran juga disebut Al-Huda, apa artinya?", options: ["Peringatan", "Cahaya", "Pembeda", "Petunjuk."], answer: "Petunjuk." },
+            { id: "hj71", question: "Berupa jumlah surat dalam Al-Quran?", options: ["110", "112", "114.", "116"], answer: "114." },
+            { id: "hj72", question: "Secara bahasa, apa arti salat?", options: ["Gerakan", "Ibadah", "Dzikir", "Doa."], answer: "Doa." },
+            { id: "hj73", question: "Siapa nama wali yang menyebarkan agama Islam di Jawa Barat?", options: ["Sunan Ampel", "Sunan Kalijaga", "Sunan Gunung Jati", "Sunan Bonang"], answer: "Sunan Gunung Jati" },
+            { id: "hj74", question: "Apa nama rukun haji yang berhenti di padang Arafah pada 9 Dzulhijah?", options: ["Tawaf", "Sa'i", "Tahallul", "Wuquf."], answer: "Wuquf." },
+            { id: "hj75", question: "Nabi Muhammad SAW memiliki sifat shidiq, apa artinya?", options: ["Dapat dipercaya", "Cerdas", "Menyampaikan", "Perilaku dan perkataan yang benar."], answer: "Perilaku dan perkataan yang benar." },
+            { id: "hj76", question: "Di mana lokasi Masjidil Aqsha?", options: ["Mekkah", "Madinah", "Mesir", "Palestina."], answer: "Palestina." },
+            { id: "hj77", question: "Siapa nama khalifah pertama Bani Umayyah?", options: ["Yazid bin Muawiyah", "Marwan bin Hakam", "Umar bin Abdul Aziz", "Muawiyah bin Abu Sofyan."], answer: "Muawiyah bin Abu Sofyan." },
+            { id: "hj78", question: "Allah bersifat baqa', apa artinya?", options: ["Ada", "Terdahulu", "Berbeda dengan makhluk", "Kekal."], answer: "Kekal." },
+            { id: "hj79", question: "Apa sebutan untuk berbuat sesuatu semata-mata hanya karena Allah SWT dan tak mengharapkan imbalan?", options: ["Sabar", "Syukur", "Tawakkal", "Ikhlas."], answer: "Ikhlas." },
+            { id: "hj80", question: "Apa nama salat sunah yang tak ada sujud dan rukuknya?", options: ["Salat dhuha", "Salat tahajud", "Salat hajat", "Salat jenazah."], answer: "Salat jenazah." },
+            { id: "hj81", question: "Apa sebutan untuk nabi-nabi yang memiliki ketabahan luar biasa?", options: ["Ulul albab", "Ulul amri", "Khulafaur Rasyidin", "Ulul azmi."], answer: "Ulul azmi." },
+            { id: "hj82", question: "Apa sebutan untuk orang yang mengumandangkan adzan?", options: ["Imam", "Khotib", "Makmum", "Muadzin."], answer: "Muadzin." },
+            { id: "hj83", question: "Apa surat Al-Quran yang diturunkan pertama kali?", options: ["Surat Al-Fatihah", "Surat Al-Baqarah", "Surat Yasin", "Surat Al-Alaq."], answer: "Surat Al-Alaq." },
+            { id: "hj84", question: "Nama lain dari hari kiamat adalah yaumul jaza', apa artinya?", options: ["Hari berbangkit", "Hari perhitungan", "Hari penimbangan", "Hari pembalasan."], answer: "Hari pembalasan." },
+            { id: "hj85", question: "Para sahabat yang ikut berhijrah dari Makkah ke Madinah bersama Nabi Muhammad SAW disebut...", options: ["Anshar", "Khawarij", "Mawali", "Muhajirin."], answer: "Muhajirin." },
+            { id: "hj86", question: "Apa sebutan untuk makmum yang terlambat?", options: ["Muadzin", "Imam", "Munfarid", "Masbuq."], answer: "Masbuq." },
+            { id: "hj87", question: "Apa sebutan untuk salat yang dilakukan bersama dua orang atau lebih?", options: ["Salat qashar", "Salat jama'", "Salat munfarid", "Salat berjamaah."], answer: "Salat berjamaah." },
+            { id: "hj88", question: "Apa yang harus dibaca makmum laki-laki untuk mengingatkan imam yang melakukan kesalahan?", options: ["Allahu Akbar", "Alhamdulillah", "Astaghfirullah", "Tasbih atau subhanallah."], answer: "Tasbih atau subhanallah." },
+            { id: "hj89", question: "Berapa ayat surat An-Nasr?", options: ["Empat", "Lima", "Enam", "Tiga."], answer: "Tiga." },
+            { id: "hj90", question: "Apa nama surat yang diturunkan setelah Rasulullah hijrah ke Madinah?", options: ["Makkiyah", "Qudsiyah", "Ilahiyah", "Madaniyah."], answer: "Madaniyah." },
+            { id: "hj91", question: "Kita harus yakin bahwa Allah SWT itu Maha Esa. Apa arti esa?", options: ["Banyak", "Tidak terbatas", "Kuat", "Satu."], answer: "Satu." },
+            ...questionsBank1.slice(90) // Tambahan soal sejarah dan nama surat (122 - 90 = 32 soal)
+        ];
+
+        const questionsBank3 = [
+            { id: "ht1", question: "Apa sebutan untuk salat sunah yang dilaksanakan untuk meminta hujan akibat kemarau panjang?", options: ["Istikharah", "Hajat", "Kusuf", "Istiqa’"], answer: "Istiqa’" },
+            { id: "ht2", question: "Menurut bahasa syukur artinya adalah...", options: ["Meminta maaf", "Bersabar", "Menerima", "Terima kasih"], answer: "Terima kasih" },
+            { id: "ht3", question: "ٳِﻧﻔَﻄَﺮَت Artinya...", options: ["Berkumpul", "Bergoncang", "Hancur", "Terbelah"], answer: "Terbelah" },
+            { id: "ht4", question: "nama bulan suci dalam agama Islam dan umat berpuasa sepanjang hari disebut...", options: ["Bulan Syawal", "Bulan Muharram", "Bulan Dzulhijjah", "Bulan Ramadan"], answer: "Bulan Ramadan" },
+            { id: "ht5", question: "Mengumpulkan dua shalat fardhu untuk dikerjakan dalam satu waktu disebut", options: ["Shalat Qashar", "Shalat Rawatib", "Shalat Sunnah", "Shalat Jama’"], answer: "Shalat Jama’" },
+            { id: "ht6", question: "Tahun kelahiran nabi Muhammad SAW, disebut…", options: ["Tahun Hijriyah", "Tahun Unta", "Tahun Kuda", "Tahun Gajah"], answer: "Tahun Gajah" },
+            { id: "ht7", question: "Berapakah jumlah ayat yang terdapat dalam surat Al-Lahab………..", options: ["3 Ayat", "4 Ayat", "6 Ayat", "5 Ayat"], answer: "5 Ayat" },
+            { id: "ht8", question: "Untuk menumbuhkan kepercayaan orang lain kepada diri kita, perilaku apa yang diperlukan?", options: ["Cerdas", "Berani", "Sabar", "Jujur."], answer: "Jujur." },
+            { id: "ht9", question: "Apa hukumnya puasa enam hari di bulan Syawal?", options: ["Wajib", "Makruh", "Mubah", "Sunah."], answer: "Sunah." },
+            { id: "ht10", question: "Hada saburotun, artinya...", options: ["Ini Buku", "Ini Meja", "Ini Kursi", "Ini Papan Tulis"], answer: "Ini Papan Tulis" },
+            { id: "ht11", question: "Al qur’an menurut bahasa artinya…", options: ["Tulisan", "Hafalan", "Pedoman", "Bacaan"], answer: "Bacaan" },
+            { id: "ht12", question: "Qur’an surat ali imran ayat 16 menjelaskan tentang…", options: ["Sabar", "Jujur", "Ikhlas", "Tawakal"], answer: "Tawakal" },
+            { id: "ht13", question: "ﻧَﻔﺲٌ ﻋَﻠِﻤَﺖ Artinya..", options: ["Setiap jiwa melihat", "Setiap jiwa merasakan", "Setiap jiwa mengingat", "Setiap jiwa mengetahui"], answer: "Setiap jiwa mengetahui" },
+            { id: "ht14", question: "Siapa khalifah pertama setelah Nabi Muhammad SAW?", options: ["Umar bin Khattab", "Utsman bin Affan", "Ali bin Abi Thalib", "Abu Bakar."], answer: "Abu Bakar." },
+            { id: "ht15", question: "Memendekan / meringkas shalat yang 4 raka’at menjadi 2 rakaat disebut ….", options: ["Jama'", "Jamak Taqdim", "Jamak Takhir", "Qashar"], answer: "Qashar" },
+            { id: "ht16", question: "Nabi Muhammad SAW adalah keturunan suku…", options: ["Aus", "Khazraj", "Kinanah", "Quraisy"], answer: "Quraisy" },
+            { id: "ht17", question: "Berapakah jumlah ayat yang terdapat dalam surat An-Nashr", options: ["4 ayat", "5 ayat", "6 ayat", "3 ayat"], answer: "3 ayat" },
+            { id: "ht18", question: "Shalat malam yang hanya dikerjakan pada bulan ramadhan disebut shalat …..", options: ["Tahajud", "Witir", "Hajat", "Tarawih"], answer: "Tarawih" },
+            { id: "ht19", question: "Siapakah yang membangun Baitullah/Ka’bah?...", options: ["Nabi Adam a.s", "Nabi Nuh a.s", "Nabi Musa a.s", "Nabi Ibrahim a.s dan nabi Isma’il a.s"], answer: "Nabi Ibrahim a.s dan nabi Isma’il a.s" },
+            { id: "ht20", question: "Kitabun buku, mistorotun penggaris, qolamun artinya ...", options: ["Penghapus", "Tas", "Pensil", "Pulpen"], answer: "Pulpen" },
+            { id: "ht21", question: "Al qur’an diturunkan dalam dua periode, yaitu periode…", options: ["Siang-Malam", "Sembunyi-Terang", "Awal-Akhir", "Mekah-Madinah"], answer: "Mekah-Madinah" },
+            { id: "ht22", question: "Tawakal berasal dari bahasa arab yang artinya adalah…", options: ["Berusaha", "Berdoa", "Bersabar", "Pasrah"], answer: "Pasrah" },
+            { id: "ht23", question: "ﻮَاﻟﺴَّﻤَﺎءِﻮَااﻟﻄَّﺎﺮِق Artinya..", options: ["Demi langit yang tinggi", "Demi langit dan bumi", "Demi bintang yang bersinar", "Demi langit yang datang pada malam hari"], answer: "Demi langit yang datang pada malam hari" },
+            { id: "ht24", question: "لا اله الا الله adalah kalimat Tahlil yang artinya...", options: ["Maha Suci Allah", "Segala puji bagi Allah", "Allah Maha Besar", "Tidak ada tuhan selain Allah"], answer: "Tidak ada tuhan selain Allah" },
+            { id: "ht25", question: "Orang yang shalat bersama, ada Imam dan ada makmum disebut shalat...", options: ["Munfarid", "Qashar", "Jama'", "Berjamaah"], answer: "Berjamaah" },
+            { id: "ht26", question: "Nabi Muhammad SAW ditinggal wafat ayahnya ketika beliau…", options: ["Usia 2 bulan", "Usia 6 bulan", "Usia 1 tahun", "Masih dalam kandungan"], answer: "Masih dalam kandungan" },
+            { id: "ht27", question: "Berapakah jumlah ayat yang terdapat dalam surat Al-Quraisy ……...", options: ["3 ayat", "5 ayat", "6 ayat", "4 ayat"], answer: "4 ayat" },
+            { id: "ht28", question: "Salah satu sifat yang wajib di Rasul adalah sifat Amanah, apa arti sifat amanah ..", options: ["Jujur", "Menyampaikan", "Cerdas", "Dapat di percaya"], answer: "Dapat di percaya" },
+            { id: "ht29", question: "Nabi memiliki sifat amanah, apa artinya?", options: ["Jujur", "Menyampaikan", "Cerdas", "Dapat dipercaya."], answer: "Dapat dipercaya." },
+            { id: "ht30", question: "Kitabun buku, qolamun pulpen, mistorotun artinya ...", options: ["Penghapus", "Tas", "Papan tulis", "Penggaris"], answer: "Penggaris" },
+            { id: "ht31", question: "Al qur’an memiliki nama nama lain seperti, kitabullah yang artinya…", options: ["Firman Allah", "Cahaya Allah", "Petunjuk Allah", "Kitab ALLAH SWT"], answer: "Kitab ALLAH SWT" },
+            { id: "ht32", question: "Jujur adalah salah satu akhlak...", options: ["Mazmumah", "Tercela", "Biasa", "Mahmudah"], answer: "Mahmudah" },
+            { id: "ht33", question: "ﻓَﻠﻴَﻨﻈُﺮ Artinya..", options: ["Maka hendaklah dilihat", "Maka hendaklah dipikirkan", "Maka hendaklah merenung", "Maka hendaklah diperhatikan"], answer: "Maka hendaklah diperhatikan" },
+            { id: "ht34", question: "Coba bacakan doa kedua orang tua ...", options: ["Rabbana atina fid dunya hasanah", "Alhamdulillahi rabbil 'alamin", "Bismika allahumma ahya", "Robbighfirlii Wa Liwa Lidayya"], answer: "Robbighfirlii Wa Liwa Lidayya" },
+            { id: "ht35", question: "Menahan diri sejak terbit fajar sampai terbenam matahari dengan beberapa syarat dan rukun adalah pengertian dari ………", options: ["Shalat", "Zakat", "Haji", "Puasa"], answer: "Puasa" },
+            { id: "ht36", question: "Nabi Muhammad SAW diasuh oleh kakeknya hingga usia…", options: ["6 tahun", "7 tahun", "9 tahun", "8 tahun"], answer: "8 tahun" },
+            { id: "ht37", question: "Berapakah jumlah ayat yang terdapat dalam surat Al- Fiil …", options: ["4 ayat", "6 ayat", "7 ayat", "5 ayat"], answer: "5 ayat" },
+            { id: "ht38", question: "Siapakah Malaikat yang tugasnya menjaga Neraka …", options: ["Ridwan", "Munkar", "Nakir", "Malaikat Malik"], answer: "Malaikat Malik" },
+            { id: "ht39", question: "Sebutkan Rukun Iman yang ketiga …", options: ["Iman kepada Allah", "Iman kepada Malaikat", "Iman kepada Rasul", "Iman kepada Kitab-kitab Allah"], answer: "Iman kepada Kitab-kitab Allah" },
+            { id: "ht40", question: "Ainun mata, udunun telinga, anfun artinya ...", options: ["Mulut", "Gigi", "Rambut", "Hidung"], answer: "Hidung" },
+            { id: "ht41", question: "Nabi Muhammad saw menerima wahyu pertama pada usia…", options: ["25 tahun", "30 tahun", "35 tahun", "40 tahun"], answer: "40 tahun" },
+            { id: "ht42", question: "Orang yang berperilaku menerima apa yang ada pada dirinya disebut...", options: ["Tawakkal", "Sabar", "Ikhlas", "Syaja’ah"], answer: "Syaja’ah" },
+            { id: "ht43", question: "ﻮَاﻟﺘَﺮَاﺋِﺐ Artinya...", options: ["Dan tulang rusuk", "Dan tulang punggung", "Dan tulang leher", "Dan tulang dada perempuan"], answer: "Dan tulang dada perempuan" },
+            { id: "ht44", question: "Lam yalid walam yuulad, artinya...", options: ["Tidak beranak", "Tidak diperanakkan", "Maha Suci Allah", "Tidak Beranak Dan Diperanakan"], answer: "Tidak Beranak Dan Diperanakan" },
+            { id: "ht45", question: "Sujud yang di lakukan karena adanya perbuatan yang terlupakan dalam shalat, disebut …….", options: ["Sujud Tilawah", "Sujud Syukur", "Sujud Rukun", "Sujud Sahwi"], answer: "Sujud Sahwi" },
+            { id: "ht46", question: "Ciri ciri ayat makiyyah adalah…", options: ["Ayat-ayatnya panjang", "Membahas hukum Islam", "Ditujukan pada orang beriman", "Ayat-ayatnya pendek"], answer: "Ayat-ayatnya pendek" },
+            { id: "ht47", question: "Perilaku rendah hati disebut…", options: ["Tasamuh", "Ta'awun", "Husnudzon", "Tawaduk"], answer: "Tawaduk" },
+            { id: "ht48", question: "اﻟﺒُﺮُﻮج Artinya..", options: ["Matahari", "Bulan", "Langit", "Gugusan bintang"], answer: "Gugusan bintang" },
+            { id: "ht49", question: "Siapa nabi yang memiliki mukjizat membelah lautan dengan tongkat?", options: ["Nabi Ibrahim AS", "Nabi Isa AS", "Nabi Sulaiman AS", "Nabi musa AS."], answer: "Nabi musa AS." },
+            { id: "ht50", question: "Jumlah raka’at shalat wajib dalam sehari semalam sebanyak...", options: ["15 raka'at", "16 raka'at", "18 raka'at", "Jawab 17 raka’at"], answer: "Jawab 17 raka’at" },
+            { id: "ht51", question: "Orang yang pertama kali masuk Islam disebut..", options: ["Khulafaur Rasyidin", "Muhajirin", "Anshar", "Assabiqunal Awwalun"], answer: "Assabiqunal Awwalun" },
+            { id: "ht52", question: "Berapakah jumlah ayat yang terdapat dalam surat Al-Ma’un...", options: ["5 ayat", "6 ayat", "8 ayat", "7 ayat"], answer: "7 ayat" },
+            { id: "ht53", question: "Sebutkan kitab suci yang diturunkan kepada Nabi Musa A.S ...", options: ["Kitab Injil", "Kitab Zabur", "Al-Qur'an", "Kitab Taurat"], answer: "Kitab Taurat" },
+            { id: "ht54", question: "Hari penimbangan semua amal perbuatan manusia disebut...", options: ["Yaumul Ba'ats", "Yaumul Mahsyar", "Yaumul Hisab", "Yaumul mizan"], answer: "Yaumul mizan" },
+            { id: "ht55", question: "Ana tilmiidun, artinya", options: ["Saya Guru", "Saya Dokter", "Saya Petani", "Saya Murid"], answer: "Saya Murid" },
+            { id: "ht56", question: "Dakwah yang dilakukan nabi Muhammad saw secara sembunyi-sembunyi dilakukan selama..", options: ["1 tahun", "2 tahun", "4 tahun", "3 tahun"], answer: "3 tahun" },
+            { id: "ht57", question: "Berapakah jumlah ayat yang terdapat dalam surat Al-Kafirun ……...", options: ["4 ayat", "5 ayat", "7 ayat", "6 ayat"], answer: "6 ayat" },
+            { id: "ht58", question: "Siapakah nama ayah Nabi Sulaiman A.s ………", options: ["Nabi Ibrahim A.S", "Nabi Musa A.S", "Nabi Isa A.S", "Nabi Daud A.S"], answer: "Nabi Daud A.S" },
+            { id: "ht59", question: "Orang yang berzakat disebut……", options: ["Mustahiq", "Amil", "Gharim", "Muzakki"], answer: "Muzakki" },
+            { id: "ht60", question: "Bahasa Arabnya rumah adalah ...", options: ["Masjidun", "Madrasatun", "Fashlun", "Baitun"], answer: "Baitun" },
+            { id: "ht61", question: "Salah satu cara diturunkanya al qur’an adalah dengan suara…", options: ["Angin kencang", "Petir menyambar", "Air mengalir", "Gemerincing lonceng"], answer: "Gemerincing lonceng" },
+            { id: "ht62", question: "Mengatakan sesuatu sesuai dengan yang sebenarnya disebut…", options: ["Amanah", "Adil", "Bijaksana", "Jujur"], answer: "Jujur" },
+            { id: "ht63", question: "Mad menurut bahasa artinya...", options: ["Pendek", "Jelas", "Dengung", "Panjang"], answer: "Panjang" },
+            { id: "ht64", question: "Coba bacakan bunyi ayat ketiga surat al-kautsar ...", options: ["Inna a'tainakal kautsar", "Fashalli lirabbika wanhar", "Wal 'ashr", "Inna Syaaniaka Huwal Abtar"], answer: "Inna Syaaniaka Huwal Abtar" },
+            { id: "ht65", question: "Shalat sunnah yang bilangan rakaatnya ganjil disebut shalat……", options: ["Tahajud", "Dhuha", "Tarawih", "Witir"], answer: "Witir" },
+            { id: "ht66", question: "Siapa nama paman nabi Muhammad saw ..", options: ["Abu Lahab", "Abu Jahal", "Abu Bakar", "Abu Thalib"], answer: "Abu Thalib" },
+            { id: "ht67", question: "Berapakah jumlah ayat yang terdapat dalam surat Al-Humazah…….", options: ["7 ayat", "8 ayat", "10 ayat", "9 ayat"], answer: "9 ayat" },
+            { id: "ht68", question: "Batasan jumlah harta dalam zakat disebut...", options: ["Haul", "Zakat Fitrah", "Zakat Maal", "Nisab"], answer: "Nisab" },
+            { id: "ht69", question: "Al qur’an diturunkan kepada nabi yang tidak dapat membaca dan menulis pengertian dari…", options: ["Rasul", "Nabi", "Utusan", "Ummi"], answer: "Ummi" },
+            { id: "ht70", question: "Orang yang tidak menepati janji tergolong orang…", options: ["Kafir", "Musyrik", "Fasiq", "Pendusta"], answer: "Pendusta" },
+            { id: "ht71", question: "Al-Quran disebut dengan Adz-dzikir, apa artinya?", options: ["Petunjuk", "Cahaya", "Pembeda", "Pengingat."], answer: "Pengingat." },
+            { id: "ht72", question: "Coba bacakan doa mau keluar rumah ...", options: ["Bismillahi ar-rahman ar-rahim", "Alhamdulillahi rabbil 'alamin", "Subhanallah", "Bismillahi Tawakkaltu"], answer: "Bismillahi Tawakkaltu" },
+            { id: "ht73", question: "Perbuatan yang mencederai kepercayaan dalam menyampaikan pesan (amanah) disebut ….", options: ["Bohong", "Sombong", "Riya", "Khianat"], answer: "Khianat" },
+            { id: "ht74", question: "Sebutkan kitab suci yang diturunkan kepada Nabi Daud A.S………", options: ["Taurat", "Injil", "Al-Qur'an", "Kitab Zabur"], answer: "Kitab Zabur" },
+            { id: "ht75", question: "Apa makna suda’un مَا مَعْنَى صُدَاعٌ", options: ["Sakit perut", "Sakit gigi", "Batuk", "Demam"], answer: "Demam" },
+            { id: "ht76", question: "Mukjizat nabi Muhammad saw yang tetap ada sampai hari kiamat yaitu…", options: ["Membelah bulan", "Isra' Mi'raj", "Air keluar dari jari", "Al Qur’an"], answer: "Al Qur’an" },
+            { id: "ht77", question: "Hemat menurut bahasa adalah…", options: ["Pelit", "Kikir", "Bakhil", "Tidak berlebihan"], answer: "Tidak berlebihan" },
+            { id: "ht78", question: "Cara menghilangkan hadas kecil adalah dengan ...", options: ["Mandi wajib", "Tayamum", "Istinja'", "Berwudhu’"], answer: "Berwudhu’" },
+            { id: "ht79", question: "Sebutkan wahyu pertama yang diturunkan kepada nabi Muhammad!", options: ["Q.S. Al-Fatihah", "Q.S. Al-Mudatsir 1-5", "Q.S. Al-Baqarah 1-5", "Q.S. Al-‘Alaq ayat 1-5"], answer: "Q.S. Al-‘Alaq ayat 1-5" },
+            { id: "ht80", question: "Siapakah Malaikat yang tugasnya mencatat amal jelek dan perilaku tercela …", options: ["Roqib", "Munkar", "Nakir", "Atid"], answer: "Atid" },
+            { id: "ht81", question: "Pada umur berapakah nabi Muhammad diangkat menjadi Rasul?", options: ["25 tahun", "30 tahun", "35 tahun", "40 tahun"], answer: "40 tahun" },
+            { id: "ht82", question: "Al qur’an diturunkan kepada nabi Muhammad saw secara…", options: ["Sekaligus", "Tiba-tiba", "Sembunyi-sembunyi", "Berangsur angsur"], answer: "Berangsur angsur" },
+            { id: "ht83", question: "Ukhuwah dapat diartikan sebagai…", options: ["Permusuhan", "Perpecahan", "Perdamaian", "Persaudaraan"], answer: "Persaudaraan" },
+            { id: "ht84", question: "Ayah Nabi Muhammad saw adalah…", options: ["Abu Thalib", "Abdul Muthalib", "Abbas", "Abdullah"], answer: "Abdullah" },
+            { id: "ht85", question: "Ukhuwah wataniyah artinya persaudaraan…", options: ["Seagama", "Sesama manusia", "Keluarga", "Sebangsa"], answer: "Sebangsa" },
+            { id: "ht86", question: "Sahabat yang menolong bilal bin rabbah ketika disiksa oleh majikanya, yaitu…", options: ["Umar bin Khattab", "Utsman bin Affan", "Ali bin Abi Thalib", "Abu Bakar Ash-Shidiq"], answer: "Abu Bakar Ash-Shidiq" },
+            { id: "ht87", question: "Berapakah jumlah ayat yang terdapat dalam surat At-Takatsur …….", options: ["6 ayat", "7 ayat", "9 ayat", "8 ayat"], answer: "8 ayat" },
+            { id: "ht88", question: "Apa sebutan untuk orang yang tak mempercayai atau mengingkari Allah?", options: ["Musyrik", "Munafik", "Fasiq", "Kafir."], answer: "Kafir." },
+            { id: "ht89", question: "Sebutkan kitab suci yang diturunkan kepada Nabi Isa A.S ………", options: ["Taurat", "Zabur", "Al-Qur'an", "Kitab Injil"], answer: "Kitab Injil" },
+            { id: "ht90", question: "Arti kata yang digaris bawahi أُمِّيْ رَبَّةُ البَيْتِ", options: ["Guru", "Pedagang", "Dokter", "Ibu Rumah Tangga"], answer: "Ibu Rumah Tangga" },
+            ...questionsBank1.slice(90) // Tambahan soal sejarah dan nama surat
+        ];
+
+        // --- STATE VARIABLES ---
+        let questions = [];
+        let currentIndex = 0;
+        let answers = {};
+        let doubtful = {};
+        let isDarkMode = false;
+        const optionLabels = ["A", "B", "C", "D"];
+
+        // --- DOM ELEMENTS ---
+        const loginView = document.getElementById('login-view');
+        const quizView = document.getElementById('quiz-view');
+        const resultView = document.getElementById('result-view');
+        const profileModal = document.getElementById('profile-modal');
+        const loginForm = document.getElementById('login-form');
+        const loginError = document.getElementById('login-error');
+        const qIndexDisplay = document.getElementById('q-index-display');
+        const qText = document.getElementById('q-text');
+        const qOptions = document.getElementById('q-options');
+        const btnPrev = document.getElementById('btn-prev');
+        const btnNextTextDesktop = document.getElementById('btn-next-text-desktop');
+        const btnNextTextMobile = document.getElementById('btn-next-text-mobile');
+        const btnNextIcon = document.getElementById('btn-next-icon');
+        const questionGrid = document.getElementById('question-grid');
+        const checkDoubtful = document.getElementById('check-doubtful');
+        
+        // --- FUNCTIONS ---
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('input-username').value;
+            const password = document.getElementById('input-password').value;
+            const startInput = document.getElementById('input-start').value;
+            const endInput = document.getElementById('input-end').value;
+
+            let selectedBank = null;
+            if (username === "SOAL PERTAMA" && password === "mdmh alfalah") {
+                selectedBank = [...questionsBank1];
+            } else if (username === "SOAL KEDUA" && password === "mdmh alfalah") {
+                selectedBank = [...questionsBank2];
+            } else if (username === "SOAL KETIGA" && password === "mdmh alfalah") {
+                selectedBank = [...questionsBank3];
+            }
+
+            if (selectedBank) {
+                // Apply Range
+                let finalBank = selectedBank;
+                const start = parseInt(startInput);
+                const end = parseInt(endInput);
+
+                if (!isNaN(start) && !isNaN(end) && start > 0 && end >= start && start <= selectedBank.length) {
+                    finalBank = selectedBank.slice(start - 1, Math.min(end, selectedBank.length));
+                }
+
+                // Randomize options
+                questions = finalBank.map(q => {
+                    let opts = q.options.map(opt => ({ text: opt, isCorrect: opt === q.answer }));
+                    opts = opts.sort(() => Math.random() - 0.5);
+                    return { ...q, options: opts };
+                });
+
+                document.getElementById('display-username').textContent = username;
+                currentIndex = 0;
+                answers = {};
+                doubtful = {};
+                loginError.classList.add('hidden-view');
+                
+                loginView.classList.add('hidden-view');
+                quizView.classList.remove('hidden-view');
+                
+                renderQuiz();
+                updateGrid();
+            } else {
+                loginError.textContent = "Username atau Password salah!";
+                loginError.classList.remove('hidden-view');
+            }
+        });
+
+        function renderQuiz() {
+            const currentQ = questions[currentIndex];
+            qIndexDisplay.textContent = currentIndex + 1;
+            qText.textContent = currentQ.question;
+            
+            checkDoubtful.checked = !!doubtful[currentIndex];
+
+            // Render Options
+            qOptions.innerHTML = '';
+            currentQ.options.forEach((option, idx) => {
+                const isSelected = answers[currentIndex] === option.text;
+                
+                const label = document.createElement('label');
+                label.className = `flex items-start p-4 md:p-5 border-2 rounded-xl cursor-pointer transition-all duration-200 group ${
+                    isSelected 
+                        ? 'border-emerald-500 bg-emerald-50 dark:border-yellow-500 dark:bg-gray-700 shadow-sm' 
+                        : 'border-gray-200 dark:border-gray-600 hover:border-emerald-300 dark:hover:border-gray-500 hover:bg-emerald-50/50 dark:hover:bg-gray-700'
+                }`;
+                
+                const iconContainer = document.createElement('div');
+                iconContainer.className = 'flex items-center h-6 mt-0.5';
+                
+                const circle = document.createElement('div');
+                circle.className = `w-8 h-8 md:w-10 md:h-10 rounded-full border-2 flex items-center justify-center font-black text-sm md:text-base transition-colors ${
+                    isSelected 
+                        ? 'border-emerald-600 bg-emerald-600 text-white dark:border-yellow-500 dark:bg-yellow-500 dark:text-gray-900' 
+                        : 'border-gray-400 text-gray-500 dark:border-gray-500 dark:text-gray-400 group-hover:border-emerald-400 dark:group-hover:border-gray-300'
+                }`;
+                circle.textContent = optionLabels[idx];
+
+                iconContainer.appendChild(circle);
+                
+                const textContainer = document.createElement('div');
+                textContainer.className = 'ml-4 text-lg md:text-xl font-medium text-gray-700 dark:text-gray-200';
+                textContainer.textContent = option.text;
+
+                label.appendChild(iconContainer);
+                label.appendChild(textContainer);
+                
+                label.onclick = () => {
+                    answers[currentIndex] = option.text;
+                    renderQuiz();
+                    updateGrid();
+                };
+
+                qOptions.appendChild(label);
+            });
+
+            // Update Navigation Buttons
+            btnPrev.disabled = currentIndex === 0;
+
+            if (currentIndex === questions.length - 1) {
+                btnNextTextDesktop.textContent = "SELESAI UJIAN";
+                btnNextTextMobile.textContent = "SELESAI";
+                btnNextIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />';
+            } else {
+                btnNextTextDesktop.textContent = "SELANJUTNYA";
+                btnNextTextMobile.textContent = "NEXT";
+                btnNextIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />';
+            }
+        }
+
+        function updateGrid() {
+            questionGrid.innerHTML = '';
+            questions.forEach((q, idx) => {
+                const hasAnswer = !!answers[idx];
+                const isDoubtful = !!doubtful[idx];
+                const isActive = currentIndex === idx;
+
+                let btnClass = "bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 border-gray-300 dark:border-gray-600 hover:opacity-80";
+                if (hasAnswer) {
+                    btnClass = isDoubtful 
+                        ? "bg-yellow-400 dark:bg-yellow-500 text-black dark:text-gray-900 border-yellow-500 dark:border-yellow-600 hover:opacity-80" 
+                        : "bg-emerald-500 dark:bg-emerald-600 text-white border-emerald-600 dark:border-emerald-700 hover:opacity-80";
+                }
+                
+                if (isActive) {
+                    btnClass += " ring-4 ring-emerald-400 dark:ring-yellow-500 scale-110 z-10";
+                }
+
+                const btn = document.createElement('button');
+                btn.className = `relative h-12 md:h-14 rounded-lg text-sm md:text-base font-black flex items-center justify-center border transition-all ${btnClass}`;
+                btn.textContent = idx + 1;
+                btn.onclick = () => {
+                    currentIndex = idx;
+                    renderQuiz();
+                    updateGrid();
+                };
+
+                if (hasAnswer) {
+                    const ansSpan = document.createElement('span');
+                    ansSpan.className = 'absolute bottom-0 right-0 text-[10px] md:text-xs pr-1 md:pr-1.5 pb-0.5 opacity-90 font-mono';
+                    
+                    const optionIndex = q.options.findIndex(o => o.text === answers[idx]);
+                    ansSpan.textContent = optionIndex !== -1 ? optionLabels[optionIndex] : answers[idx].charAt(0);
+                    btn.appendChild(ansSpan);
+                }
+
+                questionGrid.appendChild(btn);
+            });
+        }
+
+        function handleNext() {
+            if (currentIndex === questions.length - 1) {
+                finishQuiz();
+            } else {
+                currentIndex++;
+                renderQuiz();
+                updateGrid();
+            }
+        }
+
+        function handlePrev() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuiz();
+                updateGrid();
+            }
+        }
+
+        function toggleDoubtful() {
+            doubtful[currentIndex] = !doubtful[currentIndex];
+            updateGrid();
+        }
+
+        function finishQuiz() {
+            let correctCount = 0;
+            questions.forEach((q, idx) => {
+                if (answers[idx] === q.answer) correctCount++;
+            });
+            
+            const score = Math.round((correctCount / questions.length) * 100);
+            
+            document.getElementById('final-score').textContent = score;
+            const scoreEl = document.getElementById('final-score');
+            scoreEl.className = `text-7xl md:text-8xl font-black drop-shadow-sm ${score === 100 ? 'text-green-500' : score >= 70 ? 'text-emerald-600 dark:text-yellow-400' : 'text-red-500'}`;
+            
+            document.getElementById('final-total').textContent = `Dari total ${questions.length} Soal`;
+
+            // Build Review List
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = '';
+            
+            questions.forEach((q, idx) => {
+                const userAnswer = answers[idx];
+                const isCorrect = userAnswer === q.answer;
+                
+                const item = document.createElement('div');
+                item.className = 'p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 last:border-b-0';
+                
+                item.innerHTML = `
+                    <div class="flex items-start gap-3 md:gap-4">
+                        <div class="mt-0.5 w-6 h-6 md:w-7 md:h-7 rounded-full flex-shrink-0 flex items-center justify-center text-white text-sm font-bold shadow-sm ${isCorrect ? 'bg-green-500' : 'bg-red-500'}">
+                            ${isCorrect ? '✓' : '✗'}
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-semibold text-sm md:text-base mb-1.5 text-gray-800 dark:text-gray-200">
+                                <span class="mr-1.5 text-gray-500 dark:text-gray-400">${idx + 1}.</span> 
+                                ${q.question}
+                            </p>
+                            <div class="text-sm">
+                                ${isCorrect ? `
+                                    <span class="text-green-600 dark:text-green-400 font-bold">Jawaban Anda: ${q.answer}</span>
+                                ` : `
+                                    <div class="flex flex-col sm:flex-row sm:gap-4">
+                                        <span class="text-red-500 dark:text-red-400">
+                                            <span class="opacity-80 line-through">Dijawab: ${userAnswer ? userAnswer : "- Kosong -"}</span>
+                                        </span>
+                                        <span class="text-green-600 dark:text-green-400 font-bold">
+                                            Kunci: ${q.answer}
+                                        </span>
+                                    </div>
+                                `}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                reviewList.appendChild(item);
+            });
+
+            quizView.classList.add('hidden-view');
+            resultView.classList.remove('hidden-view');
+        }
+
+        function openProfileModal() {
+            profileModal.classList.remove('hidden-view');
+        }
+
+        function closeProfileModal() {
+            profileModal.classList.add('hidden-view');
+        }
+
+        function logout() {
+            questions = [];
+            currentIndex = 0;
+            answers = {};
+            doubtful = {};
+            document.getElementById('input-username').value = '';
+            document.getElementById('input-password').value = '';
+            document.getElementById('input-start').value = '';
+            document.getElementById('input-end').value = '';
+            
+            profileModal.classList.add('hidden-view');
+            quizView.classList.add('hidden-view');
+            resultView.classList.add('hidden-view');
+            loginView.classList.remove('hidden-view');
+        }
+
+        function toggleDarkMode() {
+            const htmlClass = document.documentElement.classList;
+            if (htmlClass.contains('dark')) {
+                htmlClass.remove('dark');
+            } else {
+                htmlClass.add('dark');
+            }
+        }
+    </script>
+</body>
+</html>
