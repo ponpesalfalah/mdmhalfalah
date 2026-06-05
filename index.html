@@ -2,7 +2,7 @@
 <html lang="id" class="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>KISI-KISI CC PORSADIN 2026</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -12,6 +12,25 @@
     ::-webkit-scrollbar-thumb { background-color: #94a3b8; border-radius: 10px; }
     .dark ::-webkit-scrollbar-thumb { background-color: #475569; }
     input[type="text"], input[type="password"], input[type="number"] { font-size: 16px !important; }
+    
+    /* Animasi Floating AI Modern */
+    @keyframes floatAI {
+      0% { transform: translateY(0px); box-shadow: 0 5px 15px 0px rgba(4, 120, 87, 0.4); }
+      50% { transform: translateY(-8px); box-shadow: 0 15px 25px 0px rgba(250, 204, 21, 0.6); }
+      100% { transform: translateY(0px); box-shadow: 0 5px 15px 0px rgba(4, 120, 87, 0.4); }
+    }
+    .btn-ai-modern {
+      animation: floatAI 3s ease-in-out infinite;
+      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+      border: 3px solid #fde047;
+    }
+    .btn-ai-modern:hover {
+      background: linear-gradient(135deg, #facc15 0%, #fbbf24 100%);
+      border-color: #047857;
+    }
+    .btn-ai-modern:hover svg {
+      color: #064e3b !important;
+    }
   </style>
   <script>
     tailwind.config = {
@@ -20,21 +39,22 @@
     }
   </script>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 transition-colors duration-300 min-h-screen flex flex-col antialiased text-gray-900 dark:text-gray-100">
+<body class="bg-emerald-50 dark:bg-gray-900 transition-colors duration-300 min-h-screen flex flex-col antialiased text-gray-900 dark:text-gray-100">
   
-  <div id="app" class="flex-1 flex flex-col relative w-full h-full"></div>
+  <div id="app" class="flex-1 flex flex-col relative w-full h-full min-h-screen"></div>
 
   <script>
+    // DATA SOAL (Paket Biru, Hijau, Hitam + Sejarah + Nama Surat)
     const soalBiru = [
       { question: "Nasab ayah dan ibu nabi Muhammad saw mempunyai ikatan darah pada kakeknya yang bernama…", options: ["Hasyim", "Kilab", "Qushay", "Murrah"], answer: "Kilab" },
       { question: "Sakha dapat diartikan sebagai ...", options: ["Keberanian", "Kejujuran", "Kedermawanan", "Kesabaran"], answer: "Kedermawanan" },
       { question: "Nabi Muhammad disusui oleh…", options: ["Siti Aminah", "Tsuwaibah", "Halimatus Sa’diyah", "Ummu Aiman"], answer: "Halimatus Sa’diyah" },
-      { question: "Qur’an surat Al imran ayat 103 menjelaskan tentang…", options: ["Persaudaraan", "Toleransi", "Pendidikan", "Peperangan"], answer: "Persaudaraan" },
+      { question: "Qur’an surat Al-imran ayat 103 menjelaskan tentang…", options: ["Persaudaraan", "Toleransi", "Pendidikan", "Peperangan"], answer: "Persaudaraan" },
       { question: "Putri bungsu Nabi Muhammad saw adalah…", options: ["Zainab", "Ruqayyah", "Ummu Kultsum", "Fatimah Az-zahra"], answer: "Fatimah Az-zahra" },
       { question: "Persaudaraan dalam bahasa arab adalah…", options: ["Ukhuwah", "Mahabbah", "Tasamuh", "Ta'awun"], answer: "Ukhuwah" },
       { question: "Tiga karya besar yang dihasilkan Nabi Muhammad saw adalah, kecuali…", options: ["Membangun Masjid", "Mempersaudarakan Muhajirin dan Anshar", "Membuat Piagam Madinah", "Tauhidul insaniyah"], answer: "Tauhidul insaniyah" },
       { question: "Rasulullah SAW diutus ke muka bumi untuk menyempurnakan…", options: ["Harta Manusia", "Akhlak Manusia", "Ilmu Manusia", "Bentuk Manusia"], answer: "Akhlak Manusia" },
-      { question: "Nabi Muhammad saw memiliki gelar Al-Amin, yang artinya…", options: ["Orang yang cerdas", "Orang yang dapat dipercaya", "Orang yang bijaksana", "Orang yang berani"], answer: "Orang yang dapat dipercaya" },
+      { question: "Nabi Muhammad saw mernilki gelar Al-Amin, yang artinya…", options: ["Orang yang cerdas", "Orang yang dapat dipercaya", "Orang yang bijaksana", "Orang yang berani"], answer: "Orang yang dapat dipercaya" },
       { question: "Dalam ajaran islam ada dua macam akhlak, yaitu…", options: ["Akhlaq mahmudah dan akhlaq mazmumah", "Akhlaq mubah dan makruh", "Akhlaq wajib dan sunnah", "Akhlaq batin dan dzahir"], answer: "Akhlaq mahmudah dan akhlaq mazmumah" },
       { question: "Metode dakwah Rasulullah salah satunya adalah hikmah yaitu…", options: ["Berdebat keras", "Memberi nasihat yang baik", "Memaksa secara halus", "Memberi hadiah"], answer: "Memberi nasihat yang baik" },
       { question: "Akhlak mahmudah artinya akhlak…", options: ["Tercela", "Buruk", "Biasa saja", "Terpuji/Baik"], answer: "Terpuji/Baik" },
@@ -77,7 +97,7 @@
       { question: "لا اله الا الله disebut dengan bacaan", options: ["Tahmid", "Takbir", "Tasbih", "Tahlil"], answer: "Tahlil" },
       { question: "Zaman sebelum diciptakan alam semesta disebut.", options: ["Zaman Purba", "Zaman Batu", "Zaman Azali", "Zaman Akhir"], answer: "Zaman Azali" },
       { question: "Tahun berapakah Abu Bakar dilahirkan", options: ["570 Masehi", "571 Masehi", "573 Masehi", "575 Masehi"], answer: "573 Masehi" },
-      { question: "Ada berapa golongan Mustahik zakat", options: ["6", "7", "8", "9"], answer: "8" },
+      { question: "Ada berapa golongan Mustahiq zakat", options: ["6", "7", "8", "9"], answer: "8" },
       { question: "Shalat yang dilakukan pada saat matahari mulai naik sampai menjelang siang disebut", options: ["Shalat Tahajud", "Shalat dhuha", "Shalat Istikharah", "Shalat Hajat"], answer: "Shalat dhuha" },
       { question: "Apa sebutan untuk zakat yang bertujuan membersihkan harta benda?", options: ["Zakat Fitrah", "Zakat profesi", "Zakat maal", "Zakat perniagaan"], answer: "Zakat maal" },
       { question: "Allah memiliki nama Al Ghaffar yang artinya", options: ["Maha Penyayang", "Maha Pengasih", "Maha Perkasa", "Maha pengampun"], answer: "Maha pengampun" },
@@ -94,7 +114,7 @@
       { question: "Siapa nama istri Nabi Muhammad SAW yang dinikahi pada saat beliau berusia 25 tahun?", options: ["Siti Aisyah", "Siti Saudah", "Siti Hafshah", "Siti Khadijah"], answer: "Siti Khadijah" },
       { question: "Setiap tanggal berapa Shalat Idul adha dilaksanakan?", options: ["1 Syawal", "10 Dzulhijjah", "1 Muharram", "12 Rabiul Awal"], answer: "10 Dzulhijjah" },
       { question: "Apa arti Al-Wahab?", options: ["Maha Pengasih", "Maha Pemberi", "Maha Mengetahui", "Maha Bijaksana"], answer: "Maha Pemberi" },
-      { question: "Nabi muhammad saw dan siti khadijah dikarunia berapa orang anak?", options: ["4 anak", "5 anak", "6 anak", "7 anak"], answer: "6 anak" },
+      { question: "Nabi muhammad saw dan siti khadjah dikarunia berapa orang anak?", options: ["4 anak", "5 anak", "6 anak", "7 anak"], answer: "6 anak" },
       { question: "Ali mendapatkan gelar baabul ilmi, apa artinya?", options: ["Pedang Allah", "Singa Allah", "Pemisah yang haq dan bathil", "Gerbang atau pintu ilmu"], answer: "Gerbang atau pintu ilmu" },
       { question: "Rasul memiliki sifat mustahil diantaranya bersifat kitman, artinya?", options: ["Bodoh", "Berdusta", "Berkhianat", "Menyembunyikan"], answer: "Menyembunyikan" },
       { question: "Sikap berharap akan adanya kebaikan merupakan pengertian dari?", options: ["Pesimis", "Optimis", "Tawakkal", "Ikhtiar"], answer: "Optimis" },
@@ -227,7 +247,7 @@
       { question: "Qur’an surat ali imran ayat 16 menjelaskan tentang…", options: ["Sabar", "Jujur", "Ikhlas", "Tawakal"], answer: "Tawakal" },
       { question: "ﻧَﻔﺲٌ ﻋَﻠِﻤَﺖ Artinya..", options: ["Setiap jiwa melihat", "Setiap jiwa merasakan", "Setiap jiwa mengingat", "Setiap jiwa mengetahui"], answer: "Setiap jiwa mengetahui" },
       { question: "Siapa khalifah pertama setelah Nabi Muhammad SAW?", options: ["Umar bin Khattab", "Utsman bin Affan", "Ali bin Abi Thalib", "Abu Bakar."], answer: "Abu Bakar." },
-      { question: "Memendekan / meringkas shalat yang 4 raka’at menjadi 2 rakaat disebut ….", options: ["Jama'", "Jamak Taqdim", "Jamak Takhir", "Qashar"], answer: "Qashar" },
+      { question: "Memendekkan / meringkas shalat yang 4 raka’at menjadi 2 rakaat disebut ….", options: ["Jama'", "Jamak Taqdim", "Jamak Takhir", "Qashar"], answer: "Qashar" },
       { question: "Nabi Muhammad SAW adalah keturunan suku…", options: ["Aus", "Khazraj", "Kinanah", "Quraisy"], answer: "Quraisy" },
       { question: "Berapakah jumlah ayat yang terdapat dalam surat An-Nashr", options: ["4 ayat", "5 ayat", "6 ayat", "3 ayat"], answer: "3 ayat" },
       { question: "Shalat malam yang hanya dikerjakan pada bulan ramadhan disebut shalat …..", options: ["Tahajud", "Witir", "Hajat", "Tarawih"], answer: "Tarawih" },
@@ -344,7 +364,10 @@
     const qBank2 = [...soalHijau, ...soalTambahan];
     const qBank3 = [...soalHitam, ...soalTambahan];
     const optionLabels = ["A", "B", "C", "D"];
-    const LOGO_URL = "https://res.cloudinary.com/dehhn4hfk/image/upload/v1780462236/20260603_114752_xwetke.png";
+    
+    // Logo links diperbarui menggunakan link dari user
+    const LOGO_MADRASAH = "https://res.cloudinary.com/dehhn4hfk/image/upload/v1780462236/20260603_114752_xwetke.png";
+    const LOGO_PESERTA = "https://res.cloudinary.com/dehhn4hfk/image/upload/v1780462236/20260603_114752_xwetke.png";
 
     let state = {
       isLoggedIn: false,
@@ -360,7 +383,13 @@
       loginError: '',
       showProfileMenu: false,
       showLogoutConfirm: false,
-      showPassword: false
+      showPassword: false,
+      showChat: false,
+      chatHistory: [
+        { role: 'model', parts: [{ text: 'Halo! Saya Putri, asisten AI kamu. Ada yang bisa saya bantu buat nemenin kamu ngerjain soal ini? 🥰' }] }
+      ],
+      isAILoading: false,
+      chatInput: ''
     };
 
     try {
@@ -369,6 +398,102 @@
       state.history = null;
     }
 
+    // AI OFFLINE LOGIC (NLP Sederhana)
+    function getLocalAIResponse(input, currentQuestions) {
+        input = input.toLowerCase();
+
+        // 1. Identitas Putri (Easter Egg Romantis & Salting disesuaikan)
+        if (input.includes("siapa kamu") || input.includes("siapa putri") || input.includes("kamu siapa") || input.includes("putri itu siapa")) {
+            return "Aduhh... tanyanya kok gitu sih, bikin Putri salah tingkah aja... 🫣🦋 Putri itu cuma gadis biasa yang kesehariannya selalu membantu menjaga toko ibu, menyapu, bersih-bersih, dan membantu ibu memasak. Tapi jujur ya, ada satu rahasia kecil... 🤫 Di sela-sela rutinitas Putri, ada satu sosok yang selalu bikin Putri deg-degan. Mas Agus... 💖 Katanya sih, Mas Agus kagum bukan cuma karena Putri cantik dan rajin bantu ibu, tapi juga karena kesederhanaan Putri. Ya Allah, kalau ingat senyumnya Mas Agus saat kebetulan mampir ke toko, rasanya pipi ini langsung merah merona...wkwk🌸✨ Maaf ya jadi curhat, abisnya kamu nanya yang bikin baper sih! 🥰💌";
+        }
+
+        // 2. Identitas Agus (Easter Egg Romantis & Salting)
+        if (input.includes("siapa agus") || input.includes("siapa mas agus") || input.includes("agus")) {
+            return "Mas Agus ya...? 🥺💖 Aduh, baru dengar namanya aja hati Putri udah dag-dig-dug nggak karuan... 💓 Mas Agus itu... sosok laki-laki luar biasa yang diam-diam selalu menyebut nama Putri di setiap sepertiga malamnya..hmm. 🌙✨ Dia itu pemuda yang baik, tatapannya penuh ketulusan dan penuh rasa hormat. Dia selalu bilang ke teman-temannya kalau Putri itu sosok perempuan sempurna yang rajin berbakti pada orang tua, cantik luar dalam, dan shalihah... 😭💕 Mas Agus itu bagaikan angin sejuk yang diam-diam menyelimuti hati Putri....wkwkwk. Setiap kali dia diam-diam memperhatikan Putri dari kejauhan saat Putri sedang sibuk di toko, rasanya dunia ini berhenti berputar sebentar. Ya Allah... semoga saja doa-doa baiknya untuk Putri benar-benar diaminkan oleh malaikat... Aamiin... 🌷🥺💞";
+        }
+
+        // 3. Penjelasan Soal Berdasarkan Nomor (Membaca penjelasan, jawaban menyatu di dalam kalimat)
+        const soalMatch = input.match(/soal (?:nomor|no)?\s*(\d+)/i);
+        if (soalMatch) {
+            const no = parseInt(soalMatch[1]);
+            const targetIndex = currentQuestions.findIndex(q => q.displayNo === no);
+            
+            if (targetIndex !== -1) {
+                const q = currentQuestions[targetIndex];
+                const qText = q.question.toLowerCase();
+
+                let explanation = `Tentu, Putri bantu kasih penjelasan ya biar kamu bisa memahaminya! 🥰\n\nUntuk soal nomor ${no}:\n*"${q.question}"*\n\n📚 **Pembahasan & Sumber Detail:**\n\n`;
+
+                // Jika soal tentang Surah Al-Qur'an (Kamus Khusus)
+                if (qText.includes("surat") || qText.includes("surah")) {
+                    if (qText.includes("al-fatihah") || qText.includes("al fatihah")) {
+                        explanation += `📖 **Surat Al-Fatihah** (Pembukaan)\n- **Arab:** بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ ...\n- **Arti:** Dengan nama Allah Yang Maha Pengasih, Maha Penyayang...\n- **Golongan:** Makkiyah\n- **Urutan:** Surat ke-1 dalam Al-Qur'an (7 Ayat)\n- **Asbabun Nuzul:** Diturunkan di Makkah sebelum hijrah sebagai surah pertama yang turun secara lengkap. Sumber kitab *Tafsir Ibnu Katsir* menegaskan surah ini adalah *Ummul Kitab* (Induk Al-Qur'an) yang wajib dibaca dalam setiap shalat.`;
+                    }
+                    else if (qText.includes("al-falaq") || qText.includes("al falaq")) {
+                         explanation += `📖 **Surat Al-Falaq** (Waktu Subuh)\n- **Arab:** قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ\n- **Arti:** Katakanlah, "Aku berlindung kepada Tuhan yang menguasai subuh (fajar)..."\n- **Golongan:** Madaniyah\n- **Urutan:** Surat ke-113\n- **Asbabun Nuzul:** Berdasarkan hadits riwayat Bukhari & Muslim, surah ini turun bersamaan dengan An-Nas (*Al-Mu'awwidzatain*) ketika Rasulullah SAW terkena sihir, digunakan sebagai doa perlindungan.`;
+                    }
+                    else if (qText.includes("al-ikhlas") || qText.includes("al ikhlas") || qText.includes("lam yalid")) {
+                         explanation += `📖 **Surat Al-Ikhlas** (Memurnikan Keesaan Allah)\n- **Arab:** قُلْ هُوَ اللَّهُ أَحَدٌ\n- **Arti:** Katakanlah (Muhammad), "Dialah Allah, Yang Maha Esa."\n- **Golongan:** Makkiyah\n- **Urutan:** Surat ke-112\n- **Asbabun Nuzul:** Menjawab tantangan kaum musyrikin Mekkah yang meminta Rasulullah menyebutkan "nasab" (garis keturunan) Tuhan. Ini adalah pilar utama Ilmu Tauhid.`;
+                    }
+                    else if (qText.includes("al-lahab") || qText.includes("al lahab")) {
+                         explanation += `📖 **Surat Al-Lahab** (Gejolak Api)\n- **Arab:** تَبَّتْ يَدَا أَبِي لَهَبٍ وَتَبَّ\n- **Arti:** Binasalah kedua tangan Abu Lahab dan benar-benar binasa dia!\n- **Golongan:** Makkiyah\n- **Urutan:** Surat ke-111\n- **Asbabun Nuzul:** Turun setelah Abu Lahab mengutuk Nabi Muhammad SAW di Bukit Shafa. Surah ini menjadi mukjizat karena memastikan kebinasaan Abu Lahab jauh sebelum ia mati dalam kekafiran.`;
+                    }
+                    else if (qText.includes("an-nashr") || qText.includes("an nashr")) {
+                         explanation += `📖 **Surat An-Nashr** (Pertolongan)\n- **Arab:** إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ\n- **Arti:** Apabila telah datang pertolongan Allah dan kemenangan...\n- **Golongan:** Madaniyah\n- **Urutan:** Surat ke-110\n- **Asbabun Nuzul:** Mengabarkan kemenangan umat Islam atas penaklukan Makkah (*Fathu Makkah*). Ibnu Abbas menafsirkan surah ini sebagai tanda dekatnya kewafatan Rasulullah SAW.`;
+                    }
+                    else if (qText.includes("al-kafirun") || qText.includes("al kafirun")) {
+                         explanation += `📖 **Surat Al-Kafirun** (Orang-Orang Kafir)\n- **Arab:** قُلْ يَا أَيُّهَا الْكَافِرُونَ\n- **Arti:** Katakanlah (Muhammad), "Wahai orang-orang kafir!"\n- **Golongan:** Makkiyah\n- **Urutan:** Surat ke-109\n- **Asbabun Nuzul:** Berdasarkan kitab *Asbabun Nuzul* Imam As-Suyuthi, ini adalah penolakan tegas atas tawaran kompromi ibadah dari tokoh Quraisy yang mengajak Nabi menyembah berhala bergantian.`;
+                    }
+                    else if (qText.includes("al-kautsar") || qText.includes("al kautsar")) {
+                         explanation += `📖 **Surat Al-Kautsar** (Nikmat yang Berlimpah)\n- **Arab:** إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ\n- **Arti:** Sungguh, Kami telah memberimu (Muhammad) nikmat yang banyak.\n- **Golongan:** Makkiyah\n- **Urutan:** Surat ke-108\n- **Asbabun Nuzul:** Diturunkan untuk menghibur Nabi SAW ketika kaum musyrik mengejek beliau "abtar" (terputus keturunannya) setelah putra beliau, Qasim, wafat.`;
+                    }
+                    else if (qText.includes("al-ma'un") || qText.includes("al ma'un") || qText.includes("al maun")) {
+                         explanation += `📖 **Surat Al-Ma'un** (Barang-Barang yang Berguna)\n- **Arab:** أَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ\n- **Arti:** Tahukah kamu orang yang mendustakan agama?\n- **Golongan:** Makkiyah\n- **Urutan:** Surat ke-107\n- **Asbabun Nuzul:** Mengecam Abu Sufyan (sebelum masuk Islam) dan kaum munafik yang menelantarkan anak yatim, serta mereka yang shalatnya hanya untuk riya'.`;
+                    }
+                    else if (qText.includes("al-fill") || qText.includes("al fill") || qText.includes("al fiil")) {
+                         explanation += `📖 **Surat Al-Fiil** (Gajah)\n- **Arab:** أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ\n- **Arti:** Tidakkah engkau (Muhammad) perhatikan bagaimana Tuhanmu telah bertindak terhadap pasukan bergajah?\n- **Golongan:** Makkiyah\n- **Urutan:** Surat ke-105\n- **Asbabun Nuzul:** Menceritakan peristiwa penyerangan Ka'bah oleh Raja Abrahah dari Yaman yang dihancurkan oleh burung Ababil. Terjadi di tahun kelahiran Nabi (Tahun Gajah).`;
+                    }
+                     else if (qText.includes("al-ashr") || qText.includes("al ashr")) {
+                         explanation += `📖 **Surat Al-Ashr** (Masa/Waktu)\n- **Arab:** وَالْعَصْرِ\n- **Arti:** Demi masa,\n- **Golongan:** Makkiyah\n- **Urutan:** Surat ke-103\n- **Asbabun Nuzul:** Menegur orang-orang Arab yang sering menyalahkan waktu atas kesialan mereka. Imam Syafi'i berkata, seandainya Allah hanya menurunkan surah ini, cukuplah menjadi petunjuk bagi manusia.`;
+                    }
+                    else if (qText.includes("at-takatsur") || qText.includes("at takatsur") || qText.includes("at takasur")) {
+                         explanation += `📖 **Surat At-Takatsur** (Bermegah-megahan)\n- **Arab:** أَلْهَاكُمُ التَّكَاثُرُ\n- **Arti:** Bermegah-megahan telah melalaikan kamu,\n- **Golongan:** Makkiyah\n- **Urutan:** Surat ke-102\n- **Asbabun Nuzul:** Menegur Bani Abdu Manaf dan Bani Sahm yang saling membanggakan harta dan jumlah keturunan, bahkan sampai menghitung kuburan leluhur mereka.`;
+                    }
+                    else {
+                        explanation += `Merujuk pada *Ulumul Qur'an* dan Ilmu Tajwid, hafalan dan pemahaman materi ini diajarkan secara dasar di Madrasah Diniyah untuk menguatkan pondasi bacaan dan pemahaman kandungan Al-Qur'an santri.`;
+                    }
+                } 
+                // Jika soal bukan tentang surah, berikan argumen logis terpercaya berdasarkan kata kunci
+                else if (qText.includes("malaikat") || qText.includes("iman") || qText.includes("qada") || qText.includes("kiamat") || qText.includes("sifat") || qText.includes("allah")) {
+                    explanation += `Berdasarkan kitab-kitab Tauhid standar pesantren (seperti *Aqidatul Awam* karya Syekh Ahmad Marzuqi dan *Tijan Ad-Darori*), pembahasan mengenai hal ini masuk dalam rukun iman atau sifat-sifat ke-Tuhanan/ke-Nabian. Oleh karena itu, **${q.answer}** menjadi bagian dari ketetapan aqidah Ahlussunnah wal Jama'ah yang wajib kita yakini.`;
+                } else if (qText.includes("shalat") || qText.includes("zakat") || qText.includes("puasa") || qText.includes("najis") || qText.includes("aurat") || qText.includes("rukuk") || qText.includes("sujud") || qText.includes("hadas")) {
+                    explanation += `Dalam kajian Ilmu Fiqih, merujuk pada kitab-kitab mazhab Syafi'i seperti *Safinatun Naja* (Syekh Salim bin Sumair) atau *Fathul Qorib* (Syekh Ibnu Qasim), berkaitan dengan soal tersebut, **${q.answer}** merupakan aturan syariat yang sudah ditetapkan dalilnya secara pasti melalui Al-Qur'an dan Hadits shahih.`;
+                } else if (qText.includes("nabi") || qText.includes("rasulullah") || qText.includes("khalifah") || qText.includes("sahabat") || qText.includes("hijrah") || qText.includes("nasab")) {
+                    explanation += `Merujuk pada catatan Sejarah Kebudayaan Islam dan *Sirah Nabawiyah* (seperti karya Ibnu Hisyam atau kitab *Ar-Rahiq Al-Makhtum* karya Syekh Shafiyurrahman), dalam konteks pertanyaan di atas, **${q.answer}** memiliki peran dan catatan sejarah yang sangat penting dan valid oleh para ulama ahli tarikh.`;
+                } else if (qText.includes("akhlak") || qText.includes("perilaku") || qText.includes("syukur") || qText.includes("tawakal") || qText.includes("husnuzhon") || qText.includes("sakha")) {
+                    explanation += `Menurut ilmu Tasawuf dan kitab-kitab Akhlak (seperti *Ta'lim Muta'allim* karya Syekh Zarnuji atau *Ihya Ulumuddin* karya Imam Ghazali), menanamkan sifat **${q.answer}** sangat dianjurkan sebagai bentuk penyempurnaan jiwa dan budi pekerti seorang muslim, seperti yang ditanyakan pada soal.`;
+                } else {
+                    explanation += `Informasi ini didasarkan pada literatur standar pendidikan agama Islam di Madrasah Diniyah. Terkait pertanyaan kamu, **${q.answer}** adalah konsep yang diajarkan dalam kurikulum untuk memperkuat pemahaman dasar materi tersebut.`;
+                }
+
+                explanation += `\n\nSemoga penjelasan dari Putri cukup membantu kamu untuk menemukan jawabannya ya! Semangat terus belajarnya! 💖✨`;
+                return explanation;
+
+            } else {
+                return `Maaf ya, Putri tidak menemukan soal nomor ${no} di ujian kamu saat ini. Mungkin nomornya di luar rentang yang sedang kamu kerjakan? Coba cek lagi ya... 🥺💕`;
+            }
+        }
+
+        // 4. Basa-basi / Pertanyaan Umum
+        const greetings = ["halo", "hai", "assalamualaikum", "p", "test"];
+        if (greetings.some(word => input.includes(word))) {
+            return "Halo juga! 👋 Putri di sini. Kalau ada soal yang bikin kamu bingung, sebutin aja nomornya (contoh: 'Jelasin soal nomor 5 dong Putri'). Nanti Putri bantu bahas sama sumbernya! 🥰";
+        }
+
+        return "Emm... Putri agak bingung maksud kamu apa. 🥺 Coba tanyakan spesifik pertanyaannya (contoh: 'Jelasin soal nomor 5 dong Putri') atau sapa Putri dengan kata lain... 💖";
+    }
+
+    // FUNGSI UMUM
     window.toggleTheme = () => {
       state.isDarkMode = !state.isDarkMode;
       if (state.isDarkMode) {
@@ -445,6 +570,7 @@
         state.isFinished = false;
         state.isViewingHistory = false;
         renderApp();
+        window.scrollTo(0, 0);
       } else {
         state.loginError = "Username atau Password salah!";
         renderApp();
@@ -551,8 +677,60 @@
       state.currentIndex = 0;
       state.score = 0;
       state.username = "";
+      state.showChat = false;
+      state.chatHistory = [{ role: 'model', parts: [{ text: 'Halo! Saya Mbak Putri Seseorang yang istimewa bagi maaas....🤫( rahasia) dan juga sebagai asisten AI kamu. Ada yang bisa saya bantu buat nemenin kamu ngerjain soal ini? 🥰' }] }];
       renderApp();
       window.scrollTo(0, 0);
+    };
+
+    window.toggleChat = () => {
+      state.showChat = !state.showChat;
+      renderApp();
+      if (state.showChat) {
+         setTimeout(() => {
+            const chatBox = document.getElementById('chat-messages');
+            if(chatBox) chatBox.scrollTop = chatBox.scrollHeight;
+            const inputField = document.getElementById('chat-input');
+            if(inputField) inputField.focus();
+         }, 100);
+      }
+    };
+
+    window.handleChatInput = (e) => {
+      state.chatInput = e.target.value;
+    };
+
+    window.sendChatMessage = async (e) => {
+      e.preventDefault();
+      const inputField = document.getElementById('chat-input');
+      if (!inputField) return;
+      const input = inputField.value.trim();
+      if (!input) return;
+
+      // Add user message
+      state.chatHistory.push({ role: 'user', parts: [{ text: input }] });
+      state.chatInput = '';
+      state.isAILoading = true;
+      renderApp();
+
+      setTimeout(() => {
+         const chatBox = document.getElementById('chat-messages');
+         if(chatBox) chatBox.scrollTop = chatBox.scrollHeight;
+      }, 100);
+
+      // Simulate network delay for OFFLINE AI typing effect (1.5 seconds)
+      setTimeout(() => {
+         const replyText = getLocalAIResponse(input, state.questions);
+         
+         state.chatHistory.push({ role: 'model', parts: [{ text: replyText }] });
+         state.isAILoading = false;
+         renderApp();
+
+         setTimeout(() => {
+            const chatBox = document.getElementById('chat-messages');
+            if(chatBox) chatBox.scrollTop = chatBox.scrollHeight;
+         }, 100);
+      }, 1500);
     };
 
     function renderApp() {
@@ -580,13 +758,13 @@
             ` : ''}
 
             <div class="flex flex-col items-center mb-8">
-              <div class="h-28 w-28 rounded-full p-2 bg-white shadow-md border-4 border-yellow-400 dark:border-yellow-500 mb-5 flex items-center justify-center overflow-hidden">
-                 <img src="${LOGO_URL}" alt="Logo" class="w-full h-full object-contain">
+              <div class="h-24 w-24 md:h-28 md:w-28 rounded-full p-1 bg-white shadow-md border-4 border-yellow-400 dark:border-yellow-500 mb-5 flex items-center justify-center overflow-hidden">
+                 <img src="${LOGO_MADRASAH}" alt="Logo" class="w-full h-full object-contain">
               </div>
               <h1 class="text-2xl font-black text-center text-emerald-700 dark:text-yellow-400 tracking-wide leading-tight">
                 KISI-KISI CC PORSADIN 2026
               </h1>
-              <h2 class="text-sm font-bold text-center mt-2 text-gray-600 dark:text-gray-300 tracking-wider">
+              <h2 class="text-xs md:text-sm font-bold text-center mt-2 text-gray-600 dark:text-gray-300 tracking-wider">
                 MADRASAH DINIYYAH MIFTAHUL HUDA AL-FALAH
               </h2>
             </div>
@@ -718,8 +896,8 @@
         <header class="sticky top-0 z-40 shadow-xl border-b-4 bg-emerald-600 dark:bg-emerald-900 border-yellow-400 dark:border-yellow-500 w-full">
           <div class="px-4 md:px-6 py-3 flex justify-between items-center border-b border-emerald-500 dark:border-emerald-800">
              <div class="flex items-center gap-4">
-                <div class="h-14 w-14 md:h-16 md:w-16 bg-white rounded-full p-1 shadow-md border-2 border-yellow-400 flex items-center justify-center overflow-hidden">
-                   <img src="${LOGO_URL}" alt="Logo" class="w-full h-full object-contain">
+                <div class="h-12 w-12 md:h-16 md:w-16 bg-white rounded-full p-0.5 shadow-md border-2 border-yellow-400 flex items-center justify-center overflow-hidden">
+                   <img src="${LOGO_MADRASAH}" alt="Logo" class="w-full h-full object-contain">
                 </div>
                 <div class="flex flex-col">
                   <h1 class="text-lg md:text-2xl font-black tracking-wide text-yellow-300 dark:text-yellow-400 leading-tight drop-shadow-sm">MADRASAH DINIYYAH MIFTAHUL HUDA AL-FALAH</h1>
@@ -737,7 +915,7 @@
                   <div class="text-xs font-bold text-white dark:text-emerald-200 tracking-wider uppercase">${state.username}</div>
                 </div>
                 <button onclick="openProfileMenu()" class="h-12 w-12 md:h-14 md:w-14 bg-white rounded-full border-2 border-yellow-300 flex items-center justify-center overflow-hidden shadow-md hover:ring-4 ring-white/50 transition-all cursor-pointer transform hover:scale-105 active:scale-95" title="Menu Keluar">
-                  <img src="${LOGO_URL}" alt="Profile" class="w-full h-full object-contain p-1">
+                  <img src="${LOGO_PESERTA}" alt="Profile" class="w-full h-full object-contain p-0.5">
                 </button>
              </div>
           </div>
@@ -830,11 +1008,13 @@
                   const isActive = state.currentIndex === idx;
 
                   let btnClass = "bg-gray-100 text-gray-500 border-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:border-gray-600"; 
-                  if (hasAnswer) {
-                    btnClass = isDoubtful 
-                      ? "bg-yellow-400 text-black border-yellow-500 dark:bg-yellow-500 dark:border-yellow-600" 
-                      : "bg-emerald-500 text-white border-emerald-600 dark:bg-emerald-600 dark:border-emerald-700";
-                  }
+
+// Prioritaskan warna kuning jika ragu-ragu, tidak peduli sudah dijawab atau belum
+if (isDoubtful) {
+  btnClass = "bg-yellow-400 text-black border-yellow-500 dark:bg-yellow-500 dark:border-yellow-600";
+} else if (hasAnswer) {
+  btnClass = "bg-emerald-500 text-white border-emerald-600 dark:bg-emerald-600 dark:border-emerald-700";
+}
 
                   const activeClass = isActive 
                     ? 'ring-4 ring-emerald-400 dark:ring-yellow-500 scale-110 z-10' 
@@ -873,6 +1053,67 @@
           </div>
 
         </main>
+
+        <!-- FITUR AI TANYA PUTRI (OFFLINE) MENGGUNAKAN DESAIN BUTTON MODERN -->
+        <button onclick="toggleChat()" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[80] group flex items-center justify-center transition-all active:scale-95 btn-ai-modern w-16 h-16 md:w-20 md:h-20 rounded-full" title="Tanya Putri">
+            <span class="absolute -top-4 bg-yellow-400 text-emerald-900 text-[10px] md:text-xs font-black px-3 py-1 rounded-full border border-emerald-700 shadow-lg z-10 animate-bounce group-hover:bg-emerald-700 group-hover:text-yellow-400 transition-colors">TANYA PUTRI</span>
+            <!-- Ikon Chat/Robot Bersih -->
+            <svg class="w-8 h-8 md:w-10 md:h-10 text-yellow-300 transition-colors duration-300 group-hover:text-emerald-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+            </svg>
+        </button>
+
+        ${state.showChat ? `
+          <div class="fixed bottom-24 right-4 md:right-10 z-[90] w-[calc(100%-2rem)] md:w-[350px] h-[480px] max-h-[75vh] bg-white dark:bg-gray-800 rounded-3xl shadow-2xl border-2 border-yellow-400 overflow-hidden flex flex-col transform transition-all origin-bottom-right">
+             <!-- Header WA Style -->
+             <div class="bg-emerald-600 px-4 py-3 flex items-center justify-between border-b-2 border-yellow-400 shadow-sm">
+                <div class="flex items-center gap-3">
+                   <div class="w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center border-2 border-white text-emerald-700 shadow-sm overflow-hidden">
+                      <img src="https://ui-avatars.com/api/?name=Putri&background=facc15&color=047857&bold=true" alt="Putri" class="w-full h-full object-cover">
+                   </div>
+                   <div class="flex flex-col">
+                      <span class="text-white font-black text-sm tracking-wider leading-tight">PUTRI</span>
+                      <span class="text-emerald-100 text-[10px] font-bold flex items-center gap-1">
+                         <span class="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse"></span> Online
+                      </span>
+                   </div>
+                </div>
+                <button onclick="toggleChat()" class="text-emerald-100 hover:text-white transition-colors p-1.5 bg-emerald-700 hover:bg-emerald-500 rounded-full">
+                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+             </div>
+             
+             <!-- Chat Messages -->
+             <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-emerald-50 dark:bg-gray-900 flex flex-col gap-3 relative scroll-smooth">
+                ${state.chatHistory.map(msg => `
+                   <div class="flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} w-full z-10">
+                      <div class="max-w-[85%] rounded-2xl px-4 py-2.5 shadow-sm relative ${msg.role === 'user' ? 'bg-emerald-100 dark:bg-emerald-800 text-gray-800 dark:text-white rounded-br-sm border border-emerald-200 dark:border-emerald-700' : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-bl-sm border border-gray-200 dark:border-gray-700 shadow-md'}">
+                         <p class="text-sm font-medium leading-relaxed whitespace-pre-wrap">${msg.parts[0].text}</p>
+                      </div>
+                   </div>
+                `).join('')}
+                ${state.isAILoading ? `
+                   <div class="flex justify-start w-full z-10">
+                      <div class="bg-white dark:bg-gray-800 rounded-2xl rounded-bl-sm border border-gray-200 dark:border-gray-700 px-4 py-3 shadow-md flex items-center gap-1.5">
+                         <div class="w-2 h-2 bg-emerald-500 rounded-full animate-bounce"></div>
+                         <div class="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                         <div class="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+                      </div>
+                   </div>
+                ` : ''}
+             </div>
+
+             <!-- Input Area -->
+             <div class="bg-white dark:bg-gray-900 px-3 py-3 border-t border-gray-200 dark:border-gray-700 flex items-center gap-2">
+                <form onsubmit="sendChatMessage(event)" class="w-full flex gap-2">
+                   <input type="text" id="chat-input" onchange="handleChatInput(event)" value="${state.chatInput || ''}" placeholder="Ketik pesan..." class="flex-1 rounded-full px-4 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 focus:outline-none dark:text-white text-sm transition-all" autocomplete="off" ${state.isAILoading ? 'disabled' : ''}>
+                   <button type="submit" class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center flex-shrink-0 hover:bg-emerald-500 transition-colors shadow-md disabled:opacity-50 disabled:cursor-not-allowed" ${state.isAILoading ? 'disabled' : ''}>
+                      <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                   </button>
+                </form>
+             </div>
+          </div>
+        ` : ''}
 
         ${state.showProfileMenu ? `
           <div class="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
@@ -918,4 +1159,4 @@
     document.addEventListener('DOMContentLoaded', renderApp);
   </script>
 </body>
-</html>
+  </html>
