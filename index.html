@@ -209,7 +209,7 @@
       { question: "Siapa nabi yang mendapat julukan bapak para nabi?", options: ["Nabi Nuh AS", "Nabi Musa AS", "Nabi Ibrahim AS.", "Nabi Muhammad SAW"], answer: "Nabi Ibrahim AS." },
       { question: "Apa keistimewaan Nabi Yusuf AS dari Allah SWT?", options: ["Membelah lautan", "Berbicara dengan hewan", "Kemampuan menafsirkan mimpi.", "Menghidupkan orang mati"], answer: "Kemampuan menafsirkan mimpi." },
       { question: "Al-Quran juga disebut Al-Huda, apa artinya?", options: ["Peringatan", "Cahaya", "Pembeda", "Petunjuk."], answer: "Petunjuk." },
-      { question: "Berupa jumlah surat dalam Al-Quran?", options: ["110", "112", "114.", "116"], answer: "114." },
+      { question: "Berapa jumlah surat dalam Al-Quran?", options: ["110", "112", "114.", "116"], answer: "114." },
       { question: "Secara bahasa, apa arti salat?", options: ["Gerakan", "Ibadah", "Dzikir", "Doa."], answer: "Doa." },
       { question: "Siapa nama wali yang menyebarkan agama Islam di Jawa Barat?", options: ["Sunan Ampel", "Sunan Kalijaga", "Sunan Gunung Jati", "Sunan Bonang"], answer: "Sunan Gunung Jati" },
       { question: "Apa nama rukun haji yang berhenti di padang Arafah pada 9 Dzulhijah?", options: ["Tawaf", "Sa'i", "Tahallul", "Wuquf."], answer: "Wuquf." },
@@ -632,6 +632,10 @@
         state.isViewingHistory = false;
         renderApp();
         window.scrollTo(0, 0);
+
+        // FITUR BARU: Mencegah kembali (back browser) saat ujian dimulai
+        window.history.pushState({ examActive: true }, '', '');
+
       } else {
         state.loginError = "Username atau Password salah!";
         renderApp();
@@ -815,7 +819,7 @@
                 LOGIN PROKTOR / ADMIN
               </h1>
               <h2 class="text-xs md:text-sm font-bold text-center mt-2 text-gray-600 dark:text-gray-300 tracking-wider">
-                Sistem Ujian CC PORSADIN 2026
+                Sistem Ujian PORSADIN 2026
               </h2>
             </div>
 
@@ -1047,7 +1051,7 @@
           <div class="px-4 md:px-6 py-2.5 flex justify-between items-center bg-emerald-700 dark:bg-emerald-800">
              <span class="font-black text-yellow-300 tracking-widest text-sm md:text-base drop-shadow-sm uppercase">KISI-KISI SOAL CERDAS CERMAT PORSADIN 2026</span>
              <button onclick="toggleTheme()" class="sm:hidden text-white p-1">
-                ${themeIcon}
+                 ${themeIcon}
              </button>
           </div>
         </header>
@@ -1281,12 +1285,24 @@
       `;
     }
 
-    // Event listener untuk mencegah reload halaman tidak disengaja
+    // Event listener untuk mencegah reload halaman (Refresh / F5) tidak disengaja
     window.addEventListener('beforeunload', function (e) {
       if (state.isLoggedIn && !state.isFinished && !state.isViewingHistory) {
         // Tampilkan prompt bawaan browser untuk mencegah hilangnya progress
         e.preventDefault();
         e.returnValue = ''; 
+      }
+    });
+
+    // FITUR BARU: Event listener untuk mencegah tombol back (kembali) di browser
+    window.addEventListener('popstate', function (e) {
+      if (state.isLoggedIn && !state.isFinished && !state.isViewingHistory) {
+        // 1. Tampilkan modal konfirmasi keluar (sama seperti menekan tombol keluar profil)
+        state.showLogoutConfirm = true;
+        renderApp();
+        
+        // 2. Dorong kembali history (pushState) agar halaman tidak benar-benar mundur
+        window.history.pushState({ examActive: true }, '', '');
       }
     });
 
