@@ -370,6 +370,7 @@
     const LOGO_PESERTA = "https://res.cloudinary.com/dehhn4hfk/image/upload/v1780462236/20260603_114752_xwetke.png";
 
     let state = {
+      isAdminLoggedIn: false, // NEW STATE: Admin login status
       isLoggedIn: false,
       username: '',
       questions: [],
@@ -422,7 +423,8 @@
                 const q = currentQuestions[targetIndex];
                 const qText = q.question.toLowerCase();
 
-                let explanation = `Tentu, Putri bantu kasih penjelasan ya biar kamu bisa memahaminya! 🥰\n\nUntuk soal nomor ${no}:\n*"${q.question}"*\n\n📚 **Pembahasan & Sumber Detail:**\n\n`;
+                // KUNCI PERUBAHAN: Selalu memberikan jawaban yang tepat secara eksplisit di awal
+                let explanation = `Tentu, Putri bantu jawab ya! 🥰\n\nUntuk soal nomor ${no}:\n*"${q.question}"*\n\n✅ **Jawaban yang paling tepat adalah: ${q.answer}**\n\n📚 **Pembahasan Singkat:**\n\n`;
 
                 // Jika soal tentang Surah Al-Qur'an (Kamus Khusus)
                 if (qText.includes("surat") || qText.includes("surah")) {
@@ -465,15 +467,15 @@
                 } 
                 // Jika soal bukan tentang surah, berikan argumen logis terpercaya berdasarkan kata kunci
                 else if (qText.includes("malaikat") || qText.includes("iman") || qText.includes("qada") || qText.includes("kiamat") || qText.includes("sifat") || qText.includes("allah")) {
-                    explanation += `Berdasarkan kitab-kitab Tauhid standar pesantren (seperti *Aqidatul Awam* karya Syekh Ahmad Marzuqi dan *Tijan Ad-Darori*), pembahasan mengenai hal ini masuk dalam rukun iman atau sifat-sifat ke-Tuhanan/ke-Nabian. Oleh karena itu, **${q.answer}** menjadi bagian dari ketetapan aqidah Ahlussunnah wal Jama'ah yang wajib kita yakini.`;
+                    explanation += `Berdasarkan kitab-kitab Tauhid standar pesantren (seperti *Aqidatul Awam* karya Syekh Ahmad Marzuqi dan *Tijan Ad-Darori*), pembahasan mengenai hal ini masuk dalam rukun iman atau sifat-sifat ke-Tuhanan/ke-Nabian. Oleh karena itu jawaban tersebut menjadi bagian dari ketetapan aqidah Ahlussunnah wal Jama'ah yang wajib kita yakini.`;
                 } else if (qText.includes("shalat") || qText.includes("zakat") || qText.includes("puasa") || qText.includes("najis") || qText.includes("aurat") || qText.includes("rukuk") || qText.includes("sujud") || qText.includes("hadas")) {
-                    explanation += `Dalam kajian Ilmu Fiqih, merujuk pada kitab-kitab mazhab Syafi'i seperti *Safinatun Naja* (Syekh Salim bin Sumair) atau *Fathul Qorib* (Syekh Ibnu Qasim), berkaitan dengan soal tersebut, **${q.answer}** merupakan aturan syariat yang sudah ditetapkan dalilnya secara pasti melalui Al-Qur'an dan Hadits shahih.`;
+                    explanation += `Dalam kajian Ilmu Fiqih, merujuk pada kitab-kitab mazhab Syafi'i seperti *Safinatun Naja* (Syekh Salim bin Sumair) atau *Fathul Qorib* (Syekh Ibnu Qasim), jawaban tersebut merupakan aturan syariat yang sudah ditetapkan dalilnya secara pasti melalui Al-Qur'an dan Hadits shahih.`;
                 } else if (qText.includes("nabi") || qText.includes("rasulullah") || qText.includes("khalifah") || qText.includes("sahabat") || qText.includes("hijrah") || qText.includes("nasab")) {
-                    explanation += `Merujuk pada catatan Sejarah Kebudayaan Islam dan *Sirah Nabawiyah* (seperti karya Ibnu Hisyam atau kitab *Ar-Rahiq Al-Makhtum* karya Syekh Shafiyurrahman), dalam konteks pertanyaan di atas, **${q.answer}** memiliki peran dan catatan sejarah yang sangat penting dan valid oleh para ulama ahli tarikh.`;
+                    explanation += `Merujuk pada catatan Sejarah Kebudayaan Islam dan *Sirah Nabawiyah* (seperti karya Ibnu Hisyam atau kitab *Ar-Rahiq Al-Makhtum* karya Syekh Shafiyurrahman), dalam konteks pertanyaan di atas jawaban tersebut memiliki peran dan catatan sejarah yang sangat penting dan valid oleh para ulama ahli tarikh.`;
                 } else if (qText.includes("akhlak") || qText.includes("perilaku") || qText.includes("syukur") || qText.includes("tawakal") || qText.includes("husnuzhon") || qText.includes("sakha")) {
-                    explanation += `Menurut ilmu Tasawuf dan kitab-kitab Akhlak (seperti *Ta'lim Muta'allim* karya Syekh Zarnuji atau *Ihya Ulumuddin* karya Imam Ghazali), menanamkan sifat **${q.answer}** sangat dianjurkan sebagai bentuk penyempurnaan jiwa dan budi pekerti seorang muslim, seperti yang ditanyakan pada soal.`;
+                    explanation += `Menurut ilmu Tasawuf dan kitab-kitab Akhlak (seperti *Ta'lim Muta'allim* karya Syekh Zarnuji atau *Ihya Ulumuddin* karya Imam Ghazali), menanamkan sifat tersebut sangat dianjurkan sebagai bentuk penyempurnaan jiwa dan budi pekerti seorang muslim, seperti yang ditanyakan pada soal.`;
                 } else {
-                    explanation += `Informasi ini didasarkan pada literatur standar pendidikan agama Islam di Madrasah Diniyah. Terkait pertanyaan kamu, **${q.answer}** adalah konsep yang diajarkan dalam kurikulum untuk memperkuat pemahaman dasar materi tersebut.`;
+                    explanation += `Informasi ini didasarkan pada literatur standar pendidikan agama Islam di Madrasah Diniyah. Terkait pertanyaan kamu, jawaban di atas adalah konsep yang diajarkan dalam kurikulum untuk memperkuat pemahaman dasar materi tersebut.`;
                 }
 
                 explanation += `\n\nSemoga penjelasan dari Putri cukup membantu kamu untuk menemukan jawabannya ya! Semangat terus belajarnya! 💖✨`;
@@ -487,7 +489,7 @@
         // 4. Basa-basi / Pertanyaan Umum
         const greetings = ["halo", "hai", "assalamualaikum", "p", "test"];
         if (greetings.some(word => input.includes(word))) {
-            return "Halo juga! 👋 Putri di sini. Kalau ada soal yang bikin kamu bingung, sebutin aja nomornya (contoh: 'Jelasin soal nomor 5 dong Putri'). Nanti Putri bantu bahas sama sumbernya! 🥰";
+            return "Halo juga! 👋 Putri di sini. Kalau ada soal yang bikin kamu bingung, sebutin aja nomornya (contoh: 'Jelasin soal nomor 5 dong Putri'). Nanti Putri bantu bahas sama kunci jawabannya! 🥰";
         }
 
         return "Emm... Putri agak bingung maksud kamu apa. 🥺 Coba tanyakan spesifik tentang soal (contoh: 'Jelasin soal nomor 5 dong Putri') atau sapa Putri dengan kata lain... 💖";
@@ -497,7 +499,14 @@
     window.toggleTheme = () => {
       // Simpan nilai input login jika belum login
       let tempUn = '', tempPw = '', tempStart = '', tempEnd = '';
-      if (!state.isLoggedIn) {
+      let tempAdminUn = '', tempAdminPw = '';
+
+      if (!state.isAdminLoggedIn) {
+         const unEl = document.getElementById('admin-username');
+         const pwEl = document.getElementById('admin-password');
+         if (unEl) tempAdminUn = unEl.value;
+         if (pwEl) tempAdminPw = pwEl.value;
+      } else if (!state.isLoggedIn) {
          const unEl = document.getElementById('login-username');
          const pwEl = document.getElementById('login-password');
          const startEl = document.getElementById('login-start');
@@ -517,7 +526,12 @@
       renderApp();
 
       // Kembalikan nilai input yang disimpan
-      if (!state.isLoggedIn) {
+      if (!state.isAdminLoggedIn) {
+         const unEl = document.getElementById('admin-username');
+         const pwEl = document.getElementById('admin-password');
+         if (unEl) unEl.value = tempAdminUn;
+         if (pwEl) pwEl.value = tempAdminPw;
+      } else if (!state.isLoggedIn) {
          const unEl = document.getElementById('login-username');
          const pwEl = document.getElementById('login-password');
          const startEl = document.getElementById('login-start');
@@ -531,7 +545,7 @@
 
     window.togglePassword = () => {
       state.showPassword = !state.showPassword;
-      const pwdInput = document.getElementById('login-password');
+      const pwdInput = document.getElementById(!state.isAdminLoggedIn ? 'admin-password' : 'login-password');
       const eyeIcon = document.getElementById('eye-icon');
       if (pwdInput) pwdInput.type = state.showPassword ? 'text' : 'password';
       if (eyeIcon) {
@@ -539,6 +553,28 @@
           ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />'
           : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />';
       }
+    };
+
+    window.handleAdminLogin = (e) => {
+      e.preventDefault();
+      state.loginError = "";
+      const un = document.getElementById('admin-username').value;
+      const pw = document.getElementById('admin-password').value;
+
+      if (un === 'admin' && pw === 'admin2002') {
+          state.isAdminLoggedIn = true;
+          renderApp();
+      } else {
+          state.loginError = "Username atau Password Admin salah!";
+          renderApp();
+      }
+    };
+
+    window.handleAdminLogout = () => {
+        state.isAdminLoggedIn = false;
+        state.isLoggedIn = false;
+        state.loginError = "";
+        renderApp();
     };
 
     window.handleLogin = (e) => {
@@ -551,9 +587,9 @@
       const endNoInput = document.getElementById('login-end').value;
 
       let selectedBank = null;
-      if (un === "SOAL PERTAMA" && pw === "mdmh alfalah") selectedBank = [...qBank1];
-      else if (un === "SOAL KEDUA" && pw === "mdmh alfalah") selectedBank = [...qBank2];
-      else if (un === "SOAL KETIGA" && pw === "mdmh alfalah") selectedBank = [...qBank3];
+      if (un === "SOAL PERTAMA" && pw === "mdmhalfalah") selectedBank = [...qBank1];
+      else if (un === "SOAL KEDUA" && pw === "mdmhalfalah") selectedBank = [...qBank2];
+      else if (un === "SOAL KETIGA" && pw === "mdmhalfalah") selectedBank = [...qBank3];
 
       if (selectedBank) {
         let finalBank = selectedBank;
@@ -765,10 +801,65 @@
         ? `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>`
         : `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>`;
 
+      // MENU LOGIN ADMIN
+      if (!state.isAdminLoggedIn) {
+        app.innerHTML = `
+        <div class="min-h-screen flex flex-col md:items-center md:justify-center p-4 relative overflow-hidden">
+          <div class="w-full max-w-md mx-auto my-4 md:my-8 p-6 md:p-8 rounded-2xl shadow-2xl transition-colors duration-300 border-t-8 border-red-500 dark:border-red-600 bg-white dark:bg-gray-800 z-10">
+            
+            <div class="flex flex-col items-center mb-8">
+              <div class="h-24 w-24 md:h-28 md:w-28 rounded-full p-1 bg-white shadow-md border-4 border-red-500 dark:border-red-600 mb-5 flex items-center justify-center overflow-hidden">
+                 <img src="${LOGO_MADRASAH}" alt="Logo" class="w-full h-full object-contain">
+              </div>
+              <h1 class="text-2xl font-black text-center text-red-700 dark:text-red-400 tracking-wide leading-tight">
+                LOGIN PROKTOR / ADMIN
+              </h1>
+              <h2 class="text-xs md:text-sm font-bold text-center mt-2 text-gray-600 dark:text-gray-300 tracking-wider">
+                Sistem Ujian CC PORSADIN 2026
+              </h2>
+            </div>
+
+            <form onsubmit="handleAdminLogin(event)" class="space-y-5">
+              <div>
+                <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-200">Username Admin</label>
+                <input type="text" id="admin-username" class="w-full px-4 py-3 rounded-xl border-2 focus:ring-0 focus:border-red-500 outline-none transition-all bg-gray-50 border-gray-300 text-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Ketik Username Admin" required>
+              </div>
+              
+              <div class="relative">
+                <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-200">Password</label>
+                <input type="password" id="admin-password" class="w-full px-4 py-3 rounded-xl border-2 focus:ring-0 focus:border-red-500 outline-none transition-all bg-gray-50 border-gray-300 text-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Ketik Password Admin" required>
+                <button type="button" onclick="togglePassword()" class="absolute right-4 top-10 text-gray-400 hover:text-red-500 transition-colors p-1" title="Lihat/Sembunyikan">
+                   <svg id="eye-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                   </svg>
+                </button>
+              </div>
+
+              ${state.loginError ? `<p class="text-red-600 text-sm font-bold text-center bg-red-100 p-3 rounded-xl border border-red-200">${state.loginError}</p>` : ''}
+
+              <button type="submit" class="w-full mt-2 bg-red-600 hover:bg-red-500 text-white font-black tracking-widest py-4 px-4 rounded-xl transition-transform transform active:scale-95 shadow-lg flex justify-center items-center gap-3">
+                BUKA AKSES PESERTA
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" /></svg>
+              </button>
+            </form>
+
+            <button onclick="toggleTheme()" class="mt-8 mx-auto flex items-center justify-center w-12 h-12 rounded-full transition-all bg-gray-100 text-gray-500 hover:bg-gray-200 dark:bg-gray-700 dark:text-red-400 dark:hover:bg-gray-600 shadow-sm border border-gray-200 dark:border-gray-600" title="Ganti Tema">
+               ${themeIcon}
+            </button>
+          </div>
+          
+          <div class="fixed top-0 left-0 w-full h-full bg-red-900/10 pointer-events-none z-0"></div>
+        </div>
+        `;
+        return;
+      }
+
+      // MENU LOGIN PESERTA
       if (!state.isLoggedIn) {
         app.innerHTML = `
-        <div class="min-h-screen flex flex-col md:items-center md:justify-center p-4">
-          <div class="w-full max-w-md mx-auto my-4 md:my-8 p-6 md:p-8 rounded-2xl shadow-2xl transition-colors duration-300 border-t-8 border-emerald-500 dark:border-yellow-500 bg-white dark:bg-gray-800">
+        <div class="min-h-screen flex flex-col md:items-center md:justify-center p-4 relative overflow-hidden">
+          <div class="w-full max-w-md mx-auto my-4 md:my-8 p-6 md:p-8 rounded-2xl shadow-2xl transition-colors duration-300 border-t-8 border-emerald-500 dark:border-yellow-500 bg-white dark:bg-gray-800 z-10">
             
             ${state.history ? `
               <div class="mb-6 p-5 rounded-xl border border-yellow-300 bg-yellow-50 dark:bg-gray-700 dark:border-yellow-600 text-center shadow-sm flex flex-col items-center">
@@ -837,7 +928,16 @@
             <button onclick="toggleTheme()" class="mt-8 mx-auto flex items-center justify-center w-12 h-12 rounded-full transition-all bg-gray-100 text-gray-500 hover:bg-gray-200 dark:bg-gray-700 dark:text-yellow-400 dark:hover:bg-gray-600 shadow-sm border border-gray-200 dark:border-gray-600" title="Ganti Tema">
                ${themeIcon}
             </button>
+            
+            <div class="mt-6 text-center border-t border-gray-200 dark:border-gray-700 pt-4">
+              <button type="button" onclick="handleAdminLogout()" class="text-xs font-bold text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 underline uppercase tracking-wider">
+                 Kunci Perangkat (Keluar Admin)
+              </button>
+            </div>
+            
           </div>
+          
+          <div class="fixed top-0 left-0 w-full h-full bg-emerald-900/5 pointer-events-none z-0"></div>
         </div>
         `;
         return;
@@ -945,7 +1045,7 @@
              </div>
           </div>
           <div class="px-4 md:px-6 py-2.5 flex justify-between items-center bg-emerald-700 dark:bg-emerald-800">
-             <span class="font-black text-yellow-300 tracking-widest text-sm md:text-base drop-shadow-sm uppercase">KISI-KISI SOAL CERDAS CERMAT PORSADIN 2027</span>
+             <span class="font-black text-yellow-300 tracking-widest text-sm md:text-base drop-shadow-sm uppercase">KISI-KISI SOAL CERDAS CERMAT PORSADIN 2026</span>
              <button onclick="toggleTheme()" class="sm:hidden text-white p-1">
                 ${themeIcon}
              </button>
